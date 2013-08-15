@@ -57,22 +57,19 @@ class potential:
         return newpot
 
     def __div__(self, other):
-        #FIXME: works only 1-D considered, not completed
-        newpot = copy.copy(self)
-        newpot.variables = intersect(self.variables, other.variables)
-        print "current divided newpot.variables=", newpot.variables
-        newpot.table = self.table/other.table
-        print "current divided table: \n", newpot.table
+        # It only makes senses in undirected graph.
+        # Reference: BRMLtoolbox/+brml/@array/mrdivide.m
+        if other.variables.size == 0:
+            return self
+        if self.variables.size == 0:
+            newpot = copy.deepcopy(other)
+            newpot.table = 1 / newpot.table
+            return newpot
+
+        nother = copy.deepcopy(other)
+        nother.table = 1 / nother.table
+        newpot = self * nother
         return newpot
 
     def size(self):
-        var = self.variables
-        table = np.array(self.table)
-        dim = table.ndim
-        if dim == 0:
-            print "ERRRRRRRRRRRRRRRRRR"
-        elif dim > len(var):
-            size = np.array(table.shape).size
-            print "adjusted!!!!!!"
-
-        return size  # np.array format
+        return self.card
