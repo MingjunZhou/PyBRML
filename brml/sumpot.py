@@ -41,7 +41,7 @@ def sumpot(pots, variables=[], sumover=1):
     if isinstance(pots, potential):
         pots = [pots]
     else:
-        pots = list()
+        pots = list(pots)
     variables = np.array(variables)
 
     if len(pots) == 1:

@@ -11,8 +11,8 @@
 import numpy as np
 from .potential import potential
 from setminus import setminus
+from copy import copy
 from sumpot import sumpot
-import copy
 
 
 def condpot(pots, x=[], y=[]):
@@ -20,24 +20,17 @@ def condpot(pots, x=[], y=[]):
         pots = [pots]
     else:
         pots = list(pots)
-    print "x:", x
+
     x = np.array(x)
-    print "x:", x
     y = np.array(y)
     
     for pot in pots:
         other_axis = setminus(pot.variables, y)
         other_axis = setminus(other_axis, x)
-        #if y.size != 0:
         pxy = sumpot(pot, other_axis)
-        #print "pxy.variables:", pxy.variables
         py = copy.deepcopy(pxy)
-        py = sumpot(py, x)
-        #print "py.variables:", py.variables
-        #print "pxy.table:", pxy.table
-        #print "py.table:", py.table
+        py = sumpot(pxy, x)
         pot = pxy / py
-        pot.table = pot.table / np.sum(pot.table)
 
     if len(pots) == 1:
         return pots[0]

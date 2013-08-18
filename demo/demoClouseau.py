@@ -83,8 +83,9 @@ evidencedpot = setpot(jointpot,knife,used)
 #FIXME: arbitrary setting
 #evidencedpot.variables = evidencedpot.variables[1:]
 
-conditionedpot = condpot(evidencedpot,butler)
+conditionedpot = condpot(evidencedpot,[butler])
 print "conditionedpot.variables:", conditionedpot.variables
+print "conditionedpot.card:", conditionedpot.card
 print "conditionedpot.table: \n", conditionedpot.table
 # jointpot = multpots(pot); % joint distribution
 
