@@ -14,11 +14,11 @@ from brml.IndexToAssignment import IndexToAssignment
 
 
 class potential:
-    def __init__(self, variables=np.array([]), card=np.array([]),
-                 table=np.array([])):
-        self.variables = variables
-        self.card = card
-        self.table = table
+    def __init__(self, variables=[], card=[],
+                 table=[]):
+        self.variables = np.array(variables)
+        self.card = np.array(card)
+        self.table = np.array(table)
 
     def __mul__(self, other):
         # check for empty potential
@@ -39,8 +39,8 @@ class potential:
 
         newpot.variables = np.union1d(self.variables, other.variables)
         # sorted union of input arrays
-        dummy, mapA = ismember(self.variables, newpot.variables)
-        dummy, mapB = ismember(other.variables, newpot.variables)
+        dummy, mapA, all_mapA = ismember(self.variables, newpot.variables)
+        dummy, mapB, all_mapB = ismember(other.variables, newpot.variables)
 
         newpot.card = np.zeros(newpot.variables.size, 'int8')
         newpot.card[mapA] = list(self.card)

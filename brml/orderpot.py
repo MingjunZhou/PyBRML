@@ -8,10 +8,10 @@
 import numpy as np
 import copy
 from IndexToAssignment import IndexToAssignment
-from potential import potential
+from ismember import ismember
 
 
-def orderpot(pot, varargin):
+def orderpot(pot, varargin=[]):
     """
     Return potential with variables reordered according to orderpot. If order
     is missing or empty, the variables are sorted (low to high).
@@ -38,36 +38,31 @@ def orderpot(pot, varargin):
     if not pot:
         return
 
-    oldvs = list(pot.variables)
+    oldvs = pot.variables
+    oldca = pot.card
     oldta = pot.table
-    oldns = list(oldta.shape)
 
     if not varargin:  # varargin is empty or missing
         varargin = copy.deepcopy(oldvs)
         varargin.sort()
 
-    newvs = list(varargin)
+    newvs = varargin
     newta = copy.deepcopy(oldta)
-    newta.resize(np.prod(oldns))
-    newns = copy.deepcopy(oldns)
+    newta.resize(np.prod(oldca))
+    #newns = copy.deepcopy(oldns)
 
-    newInold_idx = []
-    oldInnew_idx = []
-    for i, v in enumerate(newvs):
-        idx = oldvs.index(v)
-        newInold_idx.append(idx)
-        oldInnew_idx.append(newvs.index(oldvs[i]))
-        newns[i] = oldns[idx]
+    dummy, old_in_new, all_old_in_new = ismember(oldvs, newvs)
+    dummy, new_in_old, all_new_in_old = ismember(newvs, oldvs)
+    newca = oldca[list(new_in_old)]
+    
+    for i in range(np.prod(newca)):
+        newass = np.array(IndexToAssignment(i, newca))
+        oldass = newass[list(old_in_new)]
+        newta[i] = oldta[tuple(oldass)] 
 
-    for i in range(np.prod(oldns)):
-        newass = IndexToAssignment(i, newns)
+    newta.resize(newca)
+    pot.variables = newvs
+    pot.card = newca
+    pot.table = newta
 
-        oldass = [newass[j] for j in oldInnew_idx]
-        newta[i] = oldta[tuple(oldass)]
-
-    newta.resize(newns)
-    newpot = potential(None, None)
-    newpot.variables = newvs
-    newpot.table = newta
-
-    return newpot
+    return pot

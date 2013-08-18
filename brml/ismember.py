@@ -1,30 +1,44 @@
 #!/usr/bin/env python
 
 """
-same as ismember() in MATLAB
 tf: TRUE or FALSE
 index: the index for each A in B
 A[tf] == B[index]
 """
 import numpy as np
 
+
 def ismember(a, b):
-	#print "judge ismember......"
-#FIXME: data format needed to be unified
-	aa = a
-	a = np.array(a)
-	b = np.array(b)
-	#print "a:", a
-	#print "b:", b
-	#print "unifying the format......"
-	#print "a.ndim =", a.ndim
-	#print "b.ndim =", b.ndim
-	if a.ndim != b.ndim:
-		a = np.array([aa])
-	#print "a:", a
-	#print "b:", b
-	tf = np.in1d(a,b) # for newer versions of numpy(v1.4+)
-	# tf = np.array([i in b for i in a]) # for older versions of numpy
-	u = np.unique(a[tf])
-	index = np.array([(np.where(b == i))[0][-1] if t else 0 for i,t in zip(a,tf)])
-	return tf, index
+    """True for set member.
+    LIA, LOCB_CUT, LOCB = ismember(a, b).
+    a[tf] == b[index[index>=0]]
+
+    Args:
+        a: An 1-d nd.array.
+        b: An 1-d nd.array.
+
+    Returns:
+        LIA: An 1-d nd.array.
+            For arrays A and B returns an array of the same size as A
+            containing true where the elements of A are in B and false
+            otherwise.
+        LOCB_CUT: An 1-d nd.array.
+                    LOCB_CUT = LOCB[LOCB>=0]
+        LOCB: An 1-d nd,array
+                returns an array LOCB containing the highest absolute index in
+                B for each element in A which is a member of B and -1 if there
+                is no such index
+
+    Raises:
+        None
+    """
+
+    aa = a
+    a = np.array(a)
+    b = np.array(b)
+    if a.ndim != b.ndim:
+        a = np.array([aa])
+    tf = np.in1d(a, b)  # for newer versions of numpy(v1.4+)
+    index = np.array([(np.where(b == i))[0][-1] if t else -1
+                     for i, t in zip(a, tf)])
+    return tf, index[index >= 0], index

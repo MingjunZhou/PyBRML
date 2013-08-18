@@ -13,7 +13,7 @@ def dag(pot):
 	for p in range(len(pot)):
 		vars = np.append(vars, pot[p].variables)
 	print "variables:", vars
-#FIX ME in MATLAB version in case the index are not [1,2,....]
+        #FIX ME in MATLAB version in case the index are not [1,2,....]
 	N = len(np.unique(vars))
 	print "number of variables:", N
 	A = np.zeros((N,N))

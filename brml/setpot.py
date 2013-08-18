@@ -11,14 +11,9 @@ import numpy as np
 import copy as copy
 from .potential import potential
 from ismember import ismember
-from setstate import setstate
 from intersect import intersect
-from setstate import setstate
 from setminus import setminus
-from myzeros import myzeros
-from multpots import multpots
 from IndexToAssignment import IndexToAssignment
-from AssignmentToIndex import AssignmentToIndex
 
 
 def setpot(pot, evvariables, evidstates):
@@ -46,7 +41,7 @@ def setpot(pot, evvariables, evidstates):
         newpot = copy.copy(pot)
     else:
         newvar = setminus(vars, intersection)
-        dummy, idx = ismember(newvar, vars)
+        dummy, idx, allidx = ismember(newvar, vars)
         newns = nstates[idx]
         newpot = potential()
         newpot.variables = newvar
