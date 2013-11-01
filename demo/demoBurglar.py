@@ -15,7 +15,6 @@ sys.path.append("..")
 from brml.variable import variable
 from brml.potential import potential
 from brml.multpots import multpots
-from brml.potvariables import potvariables
 from brml.setpot import setpot
 from brml.condpot import condpot
 from brml.dag import dag

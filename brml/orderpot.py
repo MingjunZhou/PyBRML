@@ -9,9 +9,10 @@ import numpy as np
 import copy
 from IndexToAssignment import IndexToAssignment
 from ismember import ismember
+from potential import potential
 
 
-def orderpot(pot, varargin=[]):
+def orderpot(pot, varargin=None):
     """
     Return potential with variables reordered according to orderpot. If order
     is missing or empty, the variables are sorted (low to high).
@@ -38,6 +39,9 @@ def orderpot(pot, varargin=[]):
     if not pot:
         return
 
+    if varargin is None:
+        varargin = []
+
     oldvs = pot.variables
     oldca = pot.card
     oldta = pot.table
@@ -46,7 +50,7 @@ def orderpot(pot, varargin=[]):
         varargin = copy.deepcopy(oldvs)
         varargin.sort()
 
-    newvs = varargin
+    newvs = np.array(varargin)
     newta = copy.deepcopy(oldta)
     newta.resize(np.prod(oldca))
     #newns = copy.deepcopy(oldns)
@@ -54,15 +58,16 @@ def orderpot(pot, varargin=[]):
     dummy, old_in_new, all_old_in_new = ismember(oldvs, newvs)
     dummy, new_in_old, all_new_in_old = ismember(newvs, oldvs)
     newca = oldca[list(new_in_old)]
-    
+
     for i in range(np.prod(newca)):
         newass = np.array(IndexToAssignment(i, newca))
         oldass = newass[list(old_in_new)]
-        newta[i] = oldta[tuple(oldass)] 
+        newta[i] = oldta[tuple(oldass)]
 
     newta.resize(newca)
-    pot.variables = newvs
-    pot.card = newca
-    pot.table = newta
+    newpot = potential(newvs, newca, newta)
+    #pot.variables = newvs
+    #pot.card = newca
+    #pot.table = newta
 
-    return pot
+    return newpot

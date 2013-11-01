@@ -27,11 +27,11 @@ class orderpotTestCase(unittest.TestCase):
         assert np.allclose(pa.variables, pb.variables)
         assert np.allclose(pa.card, pb.card)
         assert np.allclose(pa.table, pb.table)
-    
+
     def testNewOrder(self):
         neworder = [2, 1, 3]
         newpot = orderpot(self.pot, neworder)
-        
+
         newtable = np.array([[[0, 12], [1, 13], [2, 14], [3, 15]],
                              [[4, 16], [5, 17], [6, 18], [7, 19]],
                              [[8, 20], [9, 21], [10, 22], [11, 23]]])

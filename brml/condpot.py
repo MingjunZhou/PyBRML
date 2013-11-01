@@ -15,17 +15,24 @@ from sumpot import sumpot
 import copy
 
 
-def condpot(pots, x=[], y=[]):
+def condpot(pots, x=None, y=None):
     if isinstance(pots, potential):
         pots = [pots]
     else:
         pots = list(pots)
-    print "x:", x
-    x = np.array(x)
-    print "x:", x
-    y = np.array(y)
     
-    for pot in pots:
+    if x is None:
+        x = np.array([])
+    else:
+        x = np.array(x)
+
+    if y is None:
+        y = np.array([])
+    else:
+        y = np.array(y)
+    
+    newpots = [potential() for i in range(len(pots))] 
+    for i, pot in enumerate(pots):
         other_axis = setminus(pot.variables, y)
         other_axis = setminus(other_axis, x)
         #if y.size != 0:
@@ -36,13 +43,13 @@ def condpot(pots, x=[], y=[]):
         #print "py.variables:", py.variables
         #print "pxy.table:", pxy.table
         #print "py.table:", py.table
-        pot = pxy / py
-        pot.table = pot.table / np.sum(pot.table)
+        newpots[i]= pxy / py
+        newpots[i].table = newpots[i].table / np.sum(newpots[i].table)
 
     if len(pots) == 1:
-        return pots[0]
+        return newpots[0]
     else:
-        return pots
+        return newpots
     """
     other_axis = setminus(pots
     if y.size == 0:

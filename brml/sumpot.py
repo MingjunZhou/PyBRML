@@ -10,7 +10,7 @@ from .potential import potential
 from ismember import ismember
 
 
-def sumpot(pots, variables=[], sumover=1):
+def sumpot(pots, variables=None, sumover=1):
     """Sum(marginalise) a potential over variables.
         pots = sumpot(pots)
         pots = sumpot(pots, variables)
@@ -42,8 +42,12 @@ def sumpot(pots, variables=[], sumover=1):
         pots = [pots]
     else:
         pots = list(pots)
+
+    if variables is None:
+        variables = []
     variables = np.array(variables)
 
+    """
     if len(pots) == 1:
         dummy, pv_in_v, all_pv_in_v = ismember(pots[0].variables, variables)
         diff = dummy == False
@@ -79,8 +83,27 @@ def sumpot(pots, variables=[], sumover=1):
             pot.card = pot.card[diff]
             pot.table = np.apply_over_axes(np.sum, pot.table, v_in_pv)
             pot.table = pot.table.reshape(pot.card)
+    """
+    newpots = [potential() for i in range(len(pots))]
+    for i, pot in enumerate(pots):
+        dummy, pv_in_v, all_pv_in_v = ismember(pot.variables, variables)
+        diff = dummy == False
+
+        if sumover == 1:
+            newvariables = pot.variables[dummy]
+        else:
+            newvariables = pot.variables[diff]
+            diff = dummy
+        
+        dummy, v_in_pv, all_v_in_pv = ismember(newvariables,
+                                               pot.variables)
+
+        newpots[i].variables = pot.variables[diff]
+        newpots[i].card = pot.card[diff]
+        newpots[i].table = np.apply_over_axes(np.sum, pot.table, v_in_pv)
+        newpots[i].table = newpots[i].table.reshape(newpots[i].card)
 
     if len(pots) == 1:
-        return pots[0]
+        return newpots[0]
     else:
-        return pots
+        return newpots

@@ -75,6 +75,12 @@ class potentialTestCase(unittest.TestCase):
         otherpot = potential()
         answerpot = copy.deepcopy(self.pot)
         self.assertTwoPot(self.pot / otherpot, answerpot)
+        newpot = self.pot / otherpot
+        newpot.table[0] = -1
+        #print "newpot id:", id(newpot)
+        #print "self.pot id:", id(self.pot)
+        #print "newpot.table:", newpot.table
+        #print "self.pot.table:", self.pot.table
 
         otherpot = copy.deepcopy(self.pot)
         answerpot = copy.deepcopy(self.pot)

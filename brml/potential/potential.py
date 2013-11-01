@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-
+#!/usr/bin/env python 
 "Basic Class: potential"
 if __name__ == '__main__':
     print 'PotentialClass is running by itself'
@@ -8,14 +7,20 @@ else:
 
 import numpy as np
 import copy
-from brml.intersect import intersect
 from brml.ismember import ismember
 from brml.IndexToAssignment import IndexToAssignment
 
 
 class potential:
-    def __init__(self, variables=[], card=[],
-                 table=[]):
+    def __init__(self, variables=None, card=None,
+                 table=None):
+        if variables is None:
+            variables = []
+        if card is None:
+            card = []
+        if table is None:
+            table = []
+
         self.variables = np.array(variables)
         self.card = np.array(card)
         self.table = np.array(table)
@@ -23,9 +28,9 @@ class potential:
     def __mul__(self, other):
         # check for empty potential
         if self.variables.size == 0:
-            return other
+            return copy.deepcopy(other)
         if other.variables.size == 0:
-            return self
+            return copy.deepcopy(self)
 
         commonitem = np.intersect1d(self.variables, other.variables)
         idx1 = np.in1d(self.variables, commonitem).nonzero()
@@ -60,7 +65,7 @@ class potential:
         # It only makes senses in undirected graph.
         # Reference: BRMLtoolbox/+brml/@array/mrdivide.m
         if other.variables.size == 0:
-            return self
+            return copy.deepcopy(self)
         if self.variables.size == 0:
             newpot = copy.deepcopy(other)
             newpot.table = 1 / newpot.table
