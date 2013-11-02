@@ -57,7 +57,7 @@ def sumpot(pots, variables=None, sumover=1):
         else:
             newvariables = pots[0].variables[diff]
             diff = dummy
-            
+
         dummy, v_in_pv, all_v_in_pv = ismember(newvariables,
                                                    pots[0].variables)
 
@@ -75,7 +75,7 @@ def sumpot(pots, variables=None, sumover=1):
             else:
                 newvariables = pot.variables[diff]
                 diff = dummy
-                
+
             dummy, v_in_pv, all_v_in_pv = ismember(newvariables,
                                                        pot.variables)
 
@@ -94,7 +94,7 @@ def sumpot(pots, variables=None, sumover=1):
         else:
             newvariables = pot.variables[diff]
             diff = dummy
-        
+
         dummy, v_in_pv, all_v_in_pv = ismember(newvariables,
                                                pot.variables)
 

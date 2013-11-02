@@ -6,6 +6,6 @@ newpot=divpots(pota, potb)
 """
 
 
-def divpots(pota, pob):
+def divpots(pota, potb):
     newpot = pota / potb
     return newpot

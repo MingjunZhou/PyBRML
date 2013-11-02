@@ -25,6 +25,8 @@ class potential:
         self.card = np.array(card)
         self.table = np.array(table)
 
+    def __add__(self, other):
+
     def __mul__(self, other):
         # check for empty potential
         if self.variables.size == 0:
