@@ -30,11 +30,11 @@ class potvariablesTestCase(unittest.TestCase):
     """
 
     def testNoneVariables(self):
-        pot = [potential(np.array([]), np.zeros(3))]
+        pot = [potential([], [], np.zeros(3))]
         self.assertRaises(ValueError, potvariables, pot)
 
     def testDiffVaTa(self):
-        pot = [potential(np.array([1, 2]), np.zeros((3, 2, 2)))]
+        pot = [potential([1, 2],[3, 2], np.zeros((3, 2, 2)))]
         self.assertRaises(ValueError, potvariables, pot)
 
     def testMismatchPot(self):
