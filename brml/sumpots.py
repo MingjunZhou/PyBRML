@@ -5,9 +5,6 @@
 #License: GNU License
 #Description:
 
-import numpy as np
-from .potential import potential
-
 
 def sumpots(pots):
     """Sum potentials into a single potential.
@@ -22,5 +19,11 @@ def sumpots(pots):
     Raises:
         None
     """
+    newpot = pots[0]
+    for j in range(len(pots)-1):
+        if newpot.variables.size != 0 and pots[j+1].table.size != 0:
+            newpot = newpot + pots[j+1]
+        else:
+            newpot = pots[j+1]
 
-    
+    return newpot

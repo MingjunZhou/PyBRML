@@ -9,6 +9,7 @@ import unittest
 import sys
 sys.path.append("..")
 from brml.potential import potential
+from brml.assert_utilities import assert_two_pots
 import numpy as np
 import copy
 
@@ -35,6 +36,19 @@ class potentialTestCase(unittest.TestCase):
         assert np.allclose(pa.variables, pb.variables)
         assert np.allclose(pa.card, pb.card)
         assert np.allclose(pa.table, pb.table)
+
+    """
+    def test_constructor(self):
+        newpot = potential(([2, 1], [2, 2], [[0.2, 0.6], [0.9, 0.4]]))
+        assert_two_pots(newpot, self.pot)
+    """
+
+    def test_plus_operator(self):
+        p = potential([1], [2], [0.1, 0.9])
+        q = potential([2], [2], [0.3, 0.7])
+        n = p + q
+        ans = potential([1, 2], [2, 2], [[0.4, 0.8], [1.2, 1.6]])
+        assert_two_pots(n, ans)
 
     def testMultEmpty(self):
         newpot = self.pot * potential()
@@ -118,6 +132,8 @@ class potentialTestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
+    #suite.addTest(potentialTestCase("test_constructor"))
+    suite.addTest(potentialTestCase("test_plus_operator"))
     suite.addTest(potentialTestCase("testMultEmpty"))
     suite.addTest(potentialTestCase("testMult"))
     suite.addTest(potentialTestCase("testDivEmpty"))

@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 "Basic Class: potential"
 if __name__ == '__main__':
     print 'PotentialClass is running by itself'
@@ -9,11 +9,11 @@ import numpy as np
 import copy
 from brml.ismember import ismember
 from brml.IndexToAssignment import IndexToAssignment
+from brml.assert_utilities import assert_var_card_table
 
 
-class potential:
-    def __init__(self, variables=None, card=None,
-                 table=None):
+class potential(object):
+    def __init__(self, variables=None, card=None, table=None):
         if variables is None:
             variables = []
         if card is None:
@@ -21,11 +21,50 @@ class potential:
         if table is None:
             table = []
 
-        self.variables = np.array(variables)
-        self.card = np.array(card)
-        self.table = np.array(table)
+        if not isinstance(variables, np.ndarray):
+            variables = np.array(variables)
+        if not isinstance(card, np.ndarray):
+            card = np.array(card)
+        if not isinstance(table, np.ndarray):
+            table = np.array(table)
+
+        assert_var_card_table(variables, card, table)
+
+        self.variables = variables
+        self.card = card
+        self.table = table
 
     def __add__(self, other):
+        # check for empty potential
+        if self.variables.size == 0:
+            return copy.deepcopy(other)
+        if other.variables.size == 0:
+            return copy.deepcopy(self)
+
+        commonitem = np.intersect1d(self.variables, other.variables)
+        idx1 = np.in1d(self.variables, commonitem).nonzero()
+        idx2 = np.in1d(other.variables, commonitem).nonzero()
+        if commonitem.size > 0:
+            assert np.allclose(self.card[idx1], other.card[idx2])
+
+        new_var = np.union1d(self.variables, other.variables)
+        dummy, mapA, all_mapA = ismember(self.variables, new_var)
+        dummy, mapB, all_mapB = ismember(other.variables, new_var)
+
+        new_card = np.zeros(new_var.size, 'int8')
+        new_card[mapA] = list(self.card)
+        new_card[mapB] = list(other.card)
+
+        new_table = np.zeros(tuple(new_card))
+        for i in range(np.prod(new_card)):
+            assignment = IndexToAssignment(i, new_card)
+            assign1 = np.array(assignment)[mapA]
+            assign2 = np.array(assignment)[mapB]
+            new_table[tuple(assignment)] = self.table[tuple(assign1)] +\
+                other.table[tuple(assign2)]
+
+        newpot = potential(new_var, new_card, new_table)
+        return newpot
 
     def __mul__(self, other):
         # check for empty potential

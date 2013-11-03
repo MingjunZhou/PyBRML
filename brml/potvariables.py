@@ -13,7 +13,7 @@ def potvariables(pots):
 
     Return the variables and their number of states.
     If there is a dimension mismatch in the table then return con = 0.
-    convec(i)=0 reports that variable i has conflicting dimension.
+    convect(i)=0 reports that variable i has conflicting dimension.
 
     Args:
         pots: a set of potentials
@@ -24,7 +24,7 @@ def potvariables(pots):
                  variables[idx]
         con: con = 0 if there is a dimension mismatch in the table;
              con = 1 otherwise
-        convect: convec(i) = 0 reports that variable i has conflicting
+        convect: convect(i) = 0 reports that variable i has conflicting
                 dimensions
 
     Raises:
