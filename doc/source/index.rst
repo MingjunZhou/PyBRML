@@ -11,11 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: brml.potvariables
-    :members:
-
-.. automodule:: brml.hierarchical
-    :members:
+    All modules <modules>
 
 Indices and tables
 ==================

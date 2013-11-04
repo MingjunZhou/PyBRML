@@ -16,29 +16,32 @@ def potvariables(pots):
     convect(i)=0 reports that variable i has conflicting dimension.
 
     Args:
-        pots: a set of potentials
+        pots : a set of potentials.
+
 
     Returns:
-        variables: 
+        variables :
             A list of all variables in pots.
 
-        nstates: 
-            A list of integers. nstates[idx] = number of dimension of\
-                 variables[idx]
+        nstates :
+            A list of integers. nstates[idx] = number of dimension of
+            variables[idx]
 
-        con: 
-            con = 0 if there is a dimension mismatch in the table;\
+        con :
+            con = 0 if there is a dimension mismatch in the table;
             con = 1 otherwise
 
-        convect: 
-            convect(i) = 0 reports that variable i has conflicting\
+        convect :
+            convect(i) = 0 reports that variable i has conflicting
             dimensions
 
     Raises:
-        NameError: An error occured accessing a None set of potentials
+        NameError :
+            An error occured accessing a None set of potentials
 
-        ValueError: An error occurred accessing pots with None field or\
-                    deffernt size in table and variables field
+        ValueError :
+            An error occurred accessing pots with None field or
+            deffernt size in table and variables field
 
     """
     if not pots:
