@@ -2,7 +2,7 @@
 #Author: Mingjun Zhou <mingjun.zhou@gmail.com>
 #Version: 1.0
 #Date: 2013-08-16
-#License: GNU License
+#License: BSD 3 clause 
 #Description:
 
 import numpy as np

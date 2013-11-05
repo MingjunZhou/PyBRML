@@ -9,13 +9,9 @@ from ismember import ismember
 
 
 def intersect(a,b):
-	a = np.array(a)
-	b = np.array(b)
-	#print "intersect-a:", a.size
-	#print "intersect-b:", b.size
-	#print "intersecting..... \n",
-	intersect = np.intersect1d(b,a)
-        dummy, iA, alliA = ismember(intersect, a)
-        dummy, iB, alliB = ismember(intersect, b)
-        #print "intersect", intersect
-	return intersect, iA, iB
+    a = np.array(a)
+    b = np.array(b)
+    intersect = np.intersect1d(b,a)
+    dummy, iA, alliA = ismember(intersect, a)
+    dummy, iB, alliB = ismember(intersect, b)
+    return intersect, iA, iB
