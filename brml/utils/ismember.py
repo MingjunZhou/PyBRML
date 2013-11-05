@@ -8,6 +8,10 @@ A[tf] == B[index]
 import numpy as np
 
 
+if __name__ == "__main__" and __package__ is None:
+    __package__ = "utils.ismember"
+
+
 def ismember(a, b):
     """True for set member.
     LIA, LOCB_CUT, LOCB = ismember(a, b).

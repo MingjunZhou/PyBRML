@@ -9,8 +9,8 @@
 % If both x and y are missing, just return the normalised table
 """
 import numpy as np
-from .potential import potential
-from setminus import setminus
+from ..potential import potential
+from ..utils.set_minus import set_minus
 from sumpot import sumpot
 import copy
 
@@ -33,8 +33,8 @@ def condpot(pots, x=None, y=None):
 
     newpots = [potential() for i in range(len(pots))]
     for i, pot in enumerate(pots):
-        other_axis = setminus(pot.variables, y)
-        other_axis = setminus(other_axis, x)
+        other_axis = set_minus(pot.variables, y)
+        other_axis = set_minus(other_axis, x)
         #if y.size != 0:
         pxy = sumpot(pot, other_axis)
         #print "pxy.variables:", pxy.variables

@@ -6,17 +6,17 @@
 #Description:
 
 
-from .assignment_to_index import assignment_to_index
-from .index_to_assignment import index_to_assignment
-from .intersect import intersect
-from .ismember import ismember
-from .issorted import issorted
-from .myzeros import myzeros
-from .set_diff import set_diff
-from .set_minus import set_minus
+from assignment_to_index import assignment_to_index
+from index_to_assignment import index_to_assignment
+from intersect import intersect
+from ismember import ismember
+from issorted import issorted
+from myzeros import myzeros
+from set_diff import set_diff
+from set_minus import set_minus
 
 # Legacy
-from .subv2ind import subv2ind
+from subv2ind import subv2ind
 
 __all__ = ['assignment_to_index',
            'index_to_assignment',

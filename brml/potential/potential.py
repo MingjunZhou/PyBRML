@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 "Basic Class: potential"
-if __name__ == '__main__':
-    print 'PotentialClass is running by itself'
-else:
-    print 'PotentialClass is imported as module'
+if __name__ == "__main__" and __package__ is None:
+    __package__ = "brml.potential"
+#if __name__ == '__main__':
+#    print 'PotentialClass is running by itself'
+#else:
+#    print 'PotentialClass is imported as module'
 
 import numpy as np
 import copy
-from brml.ismember import ismember
-from brml.IndexToAssignment import IndexToAssignment
-from brml.assert_utilities import assert_var_card_table
+from ..utils.ismember import ismember
+from ..reasoning.index_to_assignment import index_to_assignment
+from ..assert_utilities import assert_var_card_table
+
 
 
 class potential(object):
