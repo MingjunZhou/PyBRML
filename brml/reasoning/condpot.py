@@ -20,7 +20,7 @@ def condpot(pots, x=None, y=None):
         pots = [pots]
     else:
         pots = list(pots)
-    
+
     if x is None:
         x = np.array([])
     else:
@@ -30,8 +30,8 @@ def condpot(pots, x=None, y=None):
         y = np.array([])
     else:
         y = np.array(y)
-    
-    newpots = [potential() for i in range(len(pots))] 
+
+    newpots = [potential() for i in range(len(pots))]
     for i, pot in enumerate(pots):
         other_axis = setminus(pot.variables, y)
         other_axis = setminus(other_axis, x)
@@ -43,7 +43,7 @@ def condpot(pots, x=None, y=None):
         #print "py.variables:", py.variables
         #print "pxy.table:", pxy.table
         #print "py.table:", py.table
-        newpots[i]= pxy / py
+        newpots[i] = pxy / py
         newpots[i].table = newpots[i].table / np.sum(newpots[i].table)
 
     if len(pots) == 1:
