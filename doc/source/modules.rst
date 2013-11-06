@@ -3,5 +3,9 @@ Installing `scikit-learn`
 =========================
 .. title:: modules are here
 
-.. automodule:: brml.potvariables
+.. automodule:: brml.Potential.maxpot
     :members:
+
+.. automodule:: brml.utils.max_array
+    :members:
+

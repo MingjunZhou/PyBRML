@@ -9,14 +9,14 @@
 import unittest
 import sys
 sys.path.append("..")
-from brml.potential import sumpot
-from brml.potential import potential
+from brml.Potential import sumpot
+from brml.Potential import Potential
 import numpy as np
 
 
 class sumpotTestCase(unittest.TestCase):
     def setUp(self):
-        self.pot = potential()
+        self.pot = Potential()
         self.pot.variables = np.array([3, 2, 1])
         self.pot.card = np.array([2, 3, 4])
         self.pot.table = np.arange(0, 24).reshape(2, 3, 4)
@@ -30,7 +30,7 @@ class sumpotTestCase(unittest.TestCase):
         assert np.allclose(pa.table, pb.table)
 
     def testSinglePotOrder1(self):
-        answerPot = potential()
+        answerPot = Potential()
         answerPot.variables = np.array([3, 1])
         answerPot.card = np.array([2, 4])
         answerPot.table = np.array([[12, 15, 18, 21], [48, 51, 54, 57]])
@@ -38,7 +38,7 @@ class sumpotTestCase(unittest.TestCase):
         self.assertTwoPot(sumpot(self.pot, [2]), answerPot)
 
     def testSinglePotOrder0(self):
-        answerPot = potential()
+        answerPot = Potential()
         answerPot.variables = np.array([2])
         answerPot.card = np.array([3])
         answerPot.table = np.array([60, 92, 124])
@@ -46,7 +46,7 @@ class sumpotTestCase(unittest.TestCase):
         self.assertTwoPot(sumpot(self.pot, [2], sumover=0), answerPot)
 
     def testPotsOrder1(self):
-        answerPot = potential()
+        answerPot = Potential()
         answerPot.variables = np.array([3, 1])
         answerPot.card = np.array([2, 4])
         answerPot.table = np.array([[12, 15, 18, 21], [48, 51, 54, 57]])
@@ -55,7 +55,7 @@ class sumpotTestCase(unittest.TestCase):
             self.assertTwoPot(pot, answerPot)
 
     def testPotsOrder0(self):
-        answerPot = potential()
+        answerPot = Potential()
         answerPot.variables = np.array([2])
         answerPot.card = np.array([3])
         answerPot.table = np.array([60, 92, 124])

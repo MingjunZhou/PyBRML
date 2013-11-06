@@ -13,4 +13,4 @@ print __doc__
 import numpy as np
 import sys
 sys.path.append("..")
-from brml.potential import potential
+from brml.Potential import Potential

@@ -8,15 +8,15 @@
 import unittest
 import sys
 sys.path.append("..")
-from brml.potential import potential
-from brml.potential.assert_pots import assert_two_pots
+from brml.Potential import Potential
+from brml.Potential.assert_pots import assert_two_pots
 import numpy as np
 import copy
 
 
-class potentialTestCase(unittest.TestCase):
+class PotentialTestCase(unittest.TestCase):
     def setUp(self):
-        self.pot = potential()
+        self.pot = Potential()
         self.pot.variables = np.array([2, 1])
         self.pot.card = np.array([2, 2])
         self.pot.table = np.array([[0.2, 0.6], [0.8, 0.4]])
@@ -39,31 +39,31 @@ class potentialTestCase(unittest.TestCase):
 
     """
     def test_constructor(self):
-        newpot = potential(([2, 1], [2, 2], [[0.2, 0.6], [0.9, 0.4]]))
+        newpot = Potential(([2, 1], [2, 2], [[0.2, 0.6], [0.9, 0.4]]))
         assert_two_pots(newpot, self.pot)
     """
 
     def test_plus_operator(self):
-        p = potential([1], [2], [0.1, 0.9])
-        q = potential([2], [2], [0.3, 0.7])
+        p = Potential([1], [2], [0.1, 0.9])
+        q = Potential([2], [2], [0.3, 0.7])
         n = p + q
-        ans = potential([1, 2], [2, 2], [[0.4, 0.8], [1.2, 1.6]])
+        ans = Potential([1, 2], [2, 2], [[0.4, 0.8], [1.2, 1.6]])
         assert_two_pots(n, ans)
 
     def testMultEmpty(self):
-        newpot = self.pot * potential()
+        newpot = self.pot * Potential()
         self.assertTwoPot(newpot, self.pot)
         newpot = None
 
-        newpot = potential() * self.pot
+        newpot = Potential() * self.pot
         self.assertTwoPot(newpot, self.pot)
 
     def testMult(self):
-        otherpot = potential()
+        otherpot = Potential()
         otherpot.variables = np.array([3])
         otherpot.card = np.array([3])
         otherpot.table = np.array([0.1, 0.4, 0.5])
-        answerpot = potential()
+        answerpot = Potential()
         answerpot.variables = np.array([1, 2, 3])
         answerpot.card = np.array([2, 2, 3])
         answerpot.table = np.array([[[0.02, 0.08, 0.1],
@@ -72,11 +72,11 @@ class potentialTestCase(unittest.TestCase):
                                      [0.04, 0.16, 0.2]]])
         self.assertTwoPot(self.pot * otherpot, answerpot)
 
-        otherpot = potential()
+        otherpot = Potential()
         otherpot.variables = np.array([3, 1])
         otherpot.card = np.array([3, 2])
         otherpot.table = np.array([[0.2, 0.3], [0.2, 0.2], [0.6, 0.5]])
-        answerpot = potential()
+        answerpot = Potential()
         answerpot.variables = np.array([1, 2, 3])
         answerpot.card = np.array([2, 2, 3])
         answerpot.table = np.array([[[0.04, 0.04, 0.12],
@@ -86,7 +86,7 @@ class potentialTestCase(unittest.TestCase):
         self.assertTwoPot(self.pot * otherpot, answerpot)
 
     def testDivEmpty(self):
-        otherpot = potential()
+        otherpot = Potential()
         answerpot = copy.deepcopy(self.pot)
         self.assertTwoPot(self.pot / otherpot, answerpot)
         newpot = self.pot / otherpot
@@ -98,16 +98,16 @@ class potentialTestCase(unittest.TestCase):
 
         otherpot = copy.deepcopy(self.pot)
         answerpot = copy.deepcopy(self.pot)
-        self.pot = potential()
+        self.pot = Potential()
         answerpot.table = 1 / answerpot.table
         self.assertTwoPot(self.pot / otherpot, answerpot)
 
     def testDiv(self):
-        otherpot = potential()
+        otherpot = Potential()
         otherpot.variables = np.array([3])
         otherpot.card = np.array([3])
         otherpot.table = np.array([0.1, 0.4, 0.5])
-        answerpot = potential()
+        answerpot = Potential()
         answerpot.variables = np.array([1, 2, 3])
         answerpot.card = np.array([2, 2, 3])
         answerpot.table = np.array([[[2.0, 0.5, 0.4],
@@ -116,11 +116,11 @@ class potentialTestCase(unittest.TestCase):
                                      [4.0, 1.0, 0.8]]])
         self.assertTwoPot(self.pot / otherpot, answerpot)
 
-        otherpot = potential()
+        otherpot = Potential()
         otherpot.variables = np.array([3, 1])
         otherpot.card = np.array([3, 2])
         otherpot.table = np.array([[0.2, 0.3], [0.2, 0.2], [0.6, 0.5]])
-        answerpot = potential()
+        answerpot = Potential()
         answerpot.variables = np.array([1, 2, 3])
         answerpot.card = np.array([2, 2, 3])
         answerpot.table = np.array([[[1.0, 1.0, 0.333333],
@@ -132,12 +132,12 @@ class potentialTestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    #suite.addTest(potentialTestCase("test_constructor"))
-    suite.addTest(potentialTestCase("test_plus_operator"))
-    suite.addTest(potentialTestCase("testMultEmpty"))
-    suite.addTest(potentialTestCase("testMult"))
-    suite.addTest(potentialTestCase("testDivEmpty"))
-    suite.addTest(potentialTestCase("testDiv"))
+    #suite.addTest(PotentialTestCase("test_constructor"))
+    suite.addTest(PotentialTestCase("test_plus_operator"))
+    suite.addTest(PotentialTestCase("testMultEmpty"))
+    suite.addTest(PotentialTestCase("testMult"))
+    suite.addTest(PotentialTestCase("testDivEmpty"))
+    suite.addTest(PotentialTestCase("testDiv"))
 
     runner = unittest.TextTestRunner()
     runner.run(suite)

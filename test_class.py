@@ -2,11 +2,11 @@
 
 # this is a test case for sample codes
 
-from brml.potential import potential
+from brml.Potential import Potential
 from brml.variable import variable
 
 
-p = potential(1,1)
+p = Potential(1,1)
 print "var POTENTIAL.p created"
 print "p.variable = ", p.variables
 print "p.table = ", p.table

@@ -9,19 +9,19 @@ import numpy as np
 import copy
 from ..utils.index_to_assignment import index_to_assignment
 from ..utils.ismember import ismember
-from .potential import potential
+from .Potential import Potential
 
 
 def orderpot(pot, varargin=None):
     """
-    Return potential with variables reordered according to orderpot. If order
+    Return Potential with variables reordered according to orderpot. If order
     is missing or empty, the variables are sorted (low to high).
         newpot = orderpot(pot, <order>)
 
     Parameters
     ----------
 
-    pot: brml.potential.potential object
+    pot: brml.Potential.Potential object
         An object with fileds variables and table.
         pot.variables is a list of integer that indicates variables's name.
         pot.table is a np.ndarray of probability distribution.
@@ -33,8 +33,8 @@ def orderpot(pot, varargin=None):
     Returns
     -------
 
-    newpot: brml.potential.potential
-        the new potential object
+    newpot: brml.Potential.Potential
+        the new Potential object
     """
     if not pot:
         return
@@ -65,7 +65,7 @@ def orderpot(pot, varargin=None):
         newta[i] = oldta[tuple(oldass)]
 
     newta.resize(newca)
-    newpot = potential(newvs, newca, newta)
+    newpot = Potential(newvs, newca, newta)
     #pot.variables = newvs
     #pot.card = newca
     #pot.table = newta

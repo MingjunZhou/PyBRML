@@ -12,7 +12,7 @@ print __doc__
 import numpy as np
 import sys
 sys.path.append("..")
-from brml.potential import potential
+from brml.Potential import Potential
 from brml.variable import variable
 # from brml import *
 from brml.multpots import multpots
@@ -40,11 +40,11 @@ variable[maid].name='maid'; variable[maid].domain =['murderer','not murderer']
 variable[knife].name='knife'; variable[knife].domain=['used','not used']
 
 """
-Three potential since p(butler,maid,knife)=p(knife|butler,maid)p(butler)p(maid).
-potential numbering is arbitary
+Three Potential since p(butler,maid,knife)=p(knife|butler,maid)p(butler)p(maid).
+Potential numbering is arbitary
 """
-# Create empty list for potential, len(variable) = N
-pot = [potential() for i in range(N)]
+# Create empty list for Potential, len(variable) = N
+pot = [Potential() for i in range(N)]
 #print "pot list created as pot[knife, maid, butler] \n"
 
 pot[butler].variables = np.array([butler])

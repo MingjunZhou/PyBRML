@@ -7,14 +7,14 @@
 
 
 def sumpots(pots):
-    """Sum potentials into a single potential.
+    """Sum Potentials into a single Potential.
         pot = sumpots(pots)
 
     Args:
-        pots: A list of potentials.
+        pots: A list of Potentials.
 
     Returns:
-        pot: Return the sum of all the potentials.
+        pot: Return the sum of all the Potentials.
 
     Raises:
         None

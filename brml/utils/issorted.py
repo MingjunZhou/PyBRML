@@ -3,7 +3,7 @@
 #Version: 1.0
 #Date: 2013-08-17
 #License: BSD 3 Clause
-#Description: Is the variables field in the potential is sorted(low to high)?
+#Description: Is the variables field in the Potential is sorted(low to high)?
 
 import numpy as np
 

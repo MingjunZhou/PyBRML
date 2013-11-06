@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
 """
-%SETPOT sets array potential variables to specified states
+%SETPOT sets array Potential variables to specified states
 % newpot = setpot(pot,variables,evidstates)
 %
-% set variables in potential to evidential states in evidstates
-% Note that the new potential does not contain the evidential variables
+% set variables in Potential to evidential states in evidstates
+% Note that the new Potential does not contain the evidential variables
 """
 import numpy as np
 import copy as copy
-from .potential import potential
+from .Potential import Potential
 from ..utils.ismember import ismember
 from ..utils.intersect import intersect
 from ..utils.set_minus import set_minus
@@ -43,7 +43,7 @@ def setpot(pot, evvariables, evidstates):
         newvar = set_minus(vars, intersection)
         dummy, idx, allidx = ismember(newvar, vars)
         newns = nstates[idx]
-        newpot = potential()
+        newpot = Potential()
         newpot.variables = newvar
         newpot.card = newns
         newpot.table = np.zeros(newns)

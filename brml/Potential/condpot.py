@@ -1,22 +1,22 @@
 #!/usr/bin/env python
 
 """
-%CONDPOT Return a potential conditioned on another variable
+%CONDPOT Return a Potential conditioned on another variable
 % newpot = condpot(pot,x,y)
-% condition the potential to return potential with distribution p(x|y),
+% condition the Potential to return Potential with distribution p(x|y),
 % summing over remaining variables. If y is empty (or missing), return the
 % marginal p(x).
 % If both x and y are missing, just return the normalised table
 """
 import numpy as np
-from .potential import potential
+from .Potential import Potential
 from ..utils.set_minus import set_minus
 from .sumpot import sumpot
 import copy
 
 
 def condpot(pots, x=None, y=None):
-    if isinstance(pots, potential):
+    if isinstance(pots, Potential):
         pots = [pots]
     else:
         pots = list(pots)
@@ -31,7 +31,7 @@ def condpot(pots, x=None, y=None):
     else:
         y = np.array(y)
 
-    newpots = [potential() for i in range(len(pots))]
+    newpots = [Potential() for i in range(len(pots))]
     for i, pot in enumerate(pots):
         other_axis = set_minus(pot.variables, y)
         other_axis = set_minus(other_axis, x)

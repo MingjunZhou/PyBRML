@@ -5,11 +5,11 @@
 
 import variable
 import utils
-import potential
+import Potential
 
 __all__ = ['variable',
            'utils',
-           'potential']
+           'Potential']
 
 if __name__ == "__main__" and __package__ is None:
         __package__ = "brml"

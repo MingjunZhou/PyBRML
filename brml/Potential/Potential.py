@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-"Basic Class: potential"
+"Basic Class: Potential"
 #if __name__ == "__main__" and __package__ is None:
-#    __package__ = "brml.potential"
+#    __package__ = "brml.Potential"
 #if __name__ == '__main__':
 #    print 'PotentialClass is running by itself'
 #else:
@@ -14,7 +14,7 @@ from ..utils.index_to_assignment import index_to_assignment
 from .assert_pots import assert_var_card_table
 
 
-class potential(object):
+class Potential(object):
     def __init__(self, variables=None, card=None, table=None):
         if variables is None:
             variables = []
@@ -37,7 +37,7 @@ class potential(object):
         self.table = table
 
     def __add__(self, other):
-        # check for empty potential
+        # check for empty Potential
         if self.variables.size == 0:
             return copy.deepcopy(other)
         if other.variables.size == 0:
@@ -65,11 +65,11 @@ class potential(object):
             new_table[tuple(assignment)] = self.table[tuple(assign1)] +\
                 other.table[tuple(assign2)]
 
-        newpot = potential(new_var, new_card, new_table)
+        newpot = Potential(new_var, new_card, new_table)
         return newpot
 
     def __mul__(self, other):
-        # check for empty potential
+        # check for empty Potential
         if self.variables.size == 0:
             return copy.deepcopy(other)
         if other.variables.size == 0:
@@ -81,7 +81,7 @@ class potential(object):
         if commonitem.size > 0:
             assert np.allclose(self.card[idx1], other.card[idx2])
 
-        newpot = potential()
+        newpot = Potential()
         #FIX ME: dimension consistency not checked
         #FIX ME: only 1-D multiply considered
 

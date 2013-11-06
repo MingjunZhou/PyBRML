@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-DIVPOTS divide potential potaa by potb.
+DIVPOTS divide Potential potaa by potb.
 newpot=divpots(pota, potb)
 """
 

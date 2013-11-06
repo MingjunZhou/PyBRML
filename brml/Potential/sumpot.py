@@ -6,39 +6,39 @@
 #Description:
 
 import numpy as np
-from .potential import potential
+from .Potential import Potential
 from ..utils.ismember import ismember
 
 
 def sumpot(pots, variables=None, sumover=1):
-    """Sum(marginalise) a potential over variables.
+    """Sum(marginalise) a Potential over variables.
         pots = sumpot(pots)
         pots = sumpot(pots, variables)
         pots = sumpot(pots, variables, sumover)
 
     If called with the additional argument: sumpot(pot, variables, sumover).
-    If sumover=1 then potential is summed over variables, otherwise the
-        potential is summed over everything except variables.
-    If called as sumpot(pot), it is assumed that all variables of potential
+    If sumover=1 then Potential is summed over variables, otherwise the
+        Potential is summed over everything except variables.
+    If called as sumpot(pot), it is assumed that all variables of Potential
         are to be summed over.
 
     Args:
-        pots: A list of potentials.
+        pots: A list of Potentials.
         variables:(Optional) A np.array of variables to be summed(marginalized)
                     over.
-        sumover:(Optional) If sumover=1 then potential is summed over
-                variables, otherwise potential is summed over everything
+        sumover:(Optional) If sumover=1 then Potential is summed over
+                variables, otherwise Potential is summed over everything
                 except variables.
 
     Returns:
         pots: If pots is one np.array, returns the new pots after
                 marginalization.
-              If pots is a list of potentials, returns the new pots list.
+              If pots is a list of Potentials, returns the new pots list.
 
     Raises:
         None
     """
-    if isinstance(pots, potential):
+    if isinstance(pots, Potential):
         pots = [pots]
     else:
         pots = list(pots)
@@ -84,7 +84,7 @@ def sumpot(pots, variables=None, sumover=1):
             pot.table = np.apply_over_axes(np.sum, pot.table, v_in_pv)
             pot.table = pot.table.reshape(pot.card)
     """
-    newpots = [potential() for i in range(len(pots))]
+    newpots = [Potential() for i in range(len(pots))]
     for i, pot in enumerate(pots):
         dummy, pv_in_v, all_pv_in_v = ismember(pot.variables, variables)
         diff = dummy == False
