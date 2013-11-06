@@ -7,7 +7,7 @@
 
 import numpy as np
 from .potential import potential
-from ismember import ismember
+from ..utils.ismember import ismember
 
 
 def sumpot(pots, variables=None, sumover=1):

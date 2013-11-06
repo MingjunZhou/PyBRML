@@ -10,8 +10,8 @@ then for newpot.table all table entries matching variable 1 in state 2 will be s
 """
 import numpy as np
 import copy as copy
-from ismember import ismember
-from subv2ind import subv2ind
+from ..utils.ismember import ismember
+from ..utils.subv2ind import subv2ind
 #from brml import *
 
 def setstate(pot,vars,state,val):

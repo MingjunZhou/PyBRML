@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 "Basic Class: potential"
-if __name__ == "__main__" and __package__ is None:
-    __package__ = "brml.potential"
+#if __name__ == "__main__" and __package__ is None:
+#    __package__ = "brml.potential"
 #if __name__ == '__main__':
 #    print 'PotentialClass is running by itself'
 #else:
@@ -10,9 +10,8 @@ if __name__ == "__main__" and __package__ is None:
 import numpy as np
 import copy
 from ..utils.ismember import ismember
-from ..reasoning.index_to_assignment import index_to_assignment
-from ..assert_utilities import assert_var_card_table
-
+from ..utils.index_to_assignment import index_to_assignment
+from .assert_pots import assert_var_card_table
 
 
 class potential(object):
@@ -60,7 +59,7 @@ class potential(object):
 
         new_table = np.zeros(tuple(new_card))
         for i in range(np.prod(new_card)):
-            assignment = IndexToAssignment(i, new_card)
+            assignment = index_to_assignment(i, new_card)
             assign1 = np.array(assignment)[mapA]
             assign2 = np.array(assignment)[mapB]
             new_table[tuple(assignment)] = self.table[tuple(assign1)] +\
@@ -97,7 +96,7 @@ class potential(object):
 
         newpot.table = np.zeros(tuple(newpot.card))
         for i in range(np.prod(newpot.card)):
-            assignment = IndexToAssignment(i, newpot.card)
+            assignment = index_to_assignment(i, newpot.card)
             assign1 = np.array(assignment)[mapA]
             assign2 = np.array(assignment)[mapB]
             newpot.table[tuple(assignment)] = self.table[tuple(assign1)] *\

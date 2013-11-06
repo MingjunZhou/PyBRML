@@ -9,7 +9,7 @@ import unittest
 import sys
 sys.path.append("..")
 from brml.potential import potential
-from brml.assert_utilities import assert_two_pots
+from brml.potential.assert_pots import assert_two_pots
 import numpy as np
 import copy
 

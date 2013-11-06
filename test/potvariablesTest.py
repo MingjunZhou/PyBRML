@@ -8,7 +8,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from brml.potvariables import potvariables
+from brml.potential.potvariables import potvariables
 from brml.potential import potential
 import numpy as np
 

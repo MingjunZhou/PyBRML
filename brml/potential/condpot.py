@@ -9,9 +9,9 @@
 % If both x and y are missing, just return the normalised table
 """
 import numpy as np
-from ..potential import potential
+from .potential import potential
 from ..utils.set_minus import set_minus
-from sumpot import sumpot
+from .sumpot import sumpot
 import copy
 
 

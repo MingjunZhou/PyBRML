@@ -10,10 +10,10 @@
 import numpy as np
 import copy as copy
 from .potential import potential
-from ismember import ismember
-from intersect import intersect
-from setminus import setminus
-from IndexToAssignment import IndexToAssignment
+from ..utils.ismember import ismember
+from ..utils.intersect import intersect
+from ..utils.set_minus import set_minus
+from ..utils.index_to_assignment import index_to_assignment
 
 
 def setpot(pot, evvariables, evidstates):
@@ -40,7 +40,7 @@ def setpot(pot, evvariables, evidstates):
     if intersection.size == 0:
         newpot = copy.copy(pot)
     else:
-        newvar = setminus(vars, intersection)
+        newvar = set_minus(vars, intersection)
         dummy, idx, allidx = ismember(newvar, vars)
         newns = nstates[idx]
         newpot = potential()
@@ -50,7 +50,7 @@ def setpot(pot, evvariables, evidstates):
         #print "idx:", idx
         #print "iv:", iv
         for i in range(np.prod(newns)):
-            newassign = IndexToAssignment(i, newns)
+            newassign = index_to_assignment(i, newns)
             oldassign = np.zeros(nstates.size, 'int8')
             oldassign[idx] = newassign
             oldassign[iv] = evidstates

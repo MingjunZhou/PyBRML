@@ -7,9 +7,9 @@
 
 import numpy as np
 import copy
-from IndexToAssignment import IndexToAssignment
-from ismember import ismember
-from potential import potential
+from ..utils.index_to_assignment import index_to_assignment
+from ..utils.ismember import ismember
+from .potential import potential
 
 
 def orderpot(pot, varargin=None):
@@ -60,7 +60,7 @@ def orderpot(pot, varargin=None):
     newca = oldca[list(new_in_old)]
 
     for i in range(np.prod(newca)):
-        newass = np.array(IndexToAssignment(i, newca))
+        newass = np.array(index_to_assignment(i, newca))
         oldass = newass[list(old_in_new)]
         newta[i] = oldta[tuple(oldass)]
 

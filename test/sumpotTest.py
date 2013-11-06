@@ -9,7 +9,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from brml.sumpot import sumpot
+from brml.potential import sumpot
 from brml.potential import potential
 import numpy as np
 

@@ -9,10 +9,10 @@
 import unittest
 import sys
 sys.path.append("..")
-from brml.sumpots import sumpots
+from brml.potential import sumpots
 from brml.potential import potential
 import numpy as np
-from brml.assert_utilities import assert_two_pots
+from brml.potential import assert_two_pots
 
 
 class sumpotsTestCase(unittest.TestCase):

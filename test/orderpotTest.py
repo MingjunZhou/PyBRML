@@ -8,8 +8,8 @@
 import unittest
 import sys
 sys.path.append("..")
-from brml.orderpot import orderpot
 from brml.potential import potential
+from brml.potential import orderpot
 import numpy as np
 
 
