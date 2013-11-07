@@ -16,6 +16,7 @@ from sumpot import sumpot
 from sumpots import sumpots
 from maxpot import maxpot
 from print_pot import print_pot
+from whichpot import whichpot
 
 from Potential import Potential
 
@@ -33,4 +34,5 @@ __all__ = ["assert_two_pots",
            "sumpots",
            "maxpot",
            "print_pot",
+           "whichpot",
            "Potential"]
