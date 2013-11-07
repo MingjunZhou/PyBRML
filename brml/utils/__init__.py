@@ -14,7 +14,7 @@ from issorted import issorted
 from myzeros import myzeros
 from set_diff import set_diff
 from set_minus import set_minus
-
+from max_array import max_array
 # Legacy
 from subv2ind import subv2ind
 
@@ -26,4 +26,5 @@ __all__ = ['assignment_to_index',
            'myzeros',
            'set_diff',
            'set_minus',
-           'subv2ind']
+           'subv2ind',
+           'max_array']
