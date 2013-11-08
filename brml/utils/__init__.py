@@ -15,7 +15,7 @@ from myzeros import myzeros
 from set_diff import set_diff
 from set_minus import set_minus
 from max_array import max_array
-from norm_matrix import norm_matrix
+from norm_table import norm_table
 # Legacy
 from subv2ind import subv2ind
 
@@ -29,4 +29,4 @@ __all__ = ['assignment_to_index',
            'set_minus',
            'subv2ind',
            'max_array',
-           'norm_matrix']
+           'norm_table']
