@@ -16,6 +16,7 @@ from set_diff import set_diff
 from set_minus import set_minus
 from max_array import max_array
 from norm_table import norm_table
+from condp import condp
 # Legacy
 from subv2ind import subv2ind
 
@@ -29,4 +30,5 @@ __all__ = ['assignment_to_index',
            'set_minus',
            'subv2ind',
            'max_array',
-           'norm_table']
+           'norm_table',
+           'condp']

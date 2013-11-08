@@ -13,28 +13,33 @@ if __name__ == "__main__" and __package__ is None:
 
 
 def ismember(a, b):
-    """True for set member.
-    LIA, LOCB_CUT, LOCB = ismember(a, b).
-    a[tf] == b[index[index>=0]]
+    """Dertermine whether the elements in a is also in b.
+
+    idx_in_a_bool, idx_in_b, idx_redundant = ismember(a, b).
+    a[idx_in_a_bool] == b[idx_in_b_bool].
+    idx_in_b == idx_redundant[idx_redundant >= 0]
 
     Args:
         a: An 1-d nd.array.
         b: An 1-d nd.array.
 
     Returns:
-        LIA: An 1-d nd.array.
+        idx_in_a_bool : 1-d nd.array, boolean
             For arrays A and B returns an array of the same size as A
             containing true where the elements of A are in B and false
             otherwise.
-        LOCB_CUT: An 1-d nd.array.
-                    LOCB_CUT = LOCB[LOCB>=0]
-        LOCB: An 1-d nd,array
-                returns an array LOCB containing the highest absolute index in
+
+        idx_in_b : 1-d nd.array, int
+            idx_in_b == idx_redundant[idx_redundant >= 0]
+
+        idx_redundant : 1-d nd,array, int
+                returns an array containing the highest absolute index in
                 B for each element in A which is a member of B and -1 if there
                 is no such index
 
     Raises:
         None
+
     """
 
     aa = a
@@ -42,7 +47,8 @@ def ismember(a, b):
     b = np.array(b)
     if a.ndim != b.ndim:
         a = np.array([aa])
-    tf = np.in1d(a, b)  # for newer versions of numpy(v1.4+)
-    index = np.array([(np.where(b == i))[0][-1] if t else -1
-                     for i, t in zip(a, tf)])
-    return tf, index[index >= 0], index
+    idx_in_a_bool = np.in1d(a, b)  # for newer versions of numpy(v1.4+)
+    idx_redundant = np.array([(np.where(b == i))[0][-1] if t else -1
+                     for i, t in zip(a, idx_in_a_bool)])
+    idx_in_b = idx_redundant[idx_redundant >= 0]
+    return idx_in_a_bool, idx_in_b, idx_redundant
