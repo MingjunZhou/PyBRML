@@ -42,7 +42,7 @@ def condp(pin, dist_vars=None):
         pin = pin + eps  # in case all unnormalised probabilities are zero.
 
     if not dist_vars:
-        pnew = m / np.sum(pin)
+        pnew = pin / np.sum(pin)
         return pnew
     else:
         shape = np.array(pin.shape)

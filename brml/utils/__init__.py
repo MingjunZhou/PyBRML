@@ -17,6 +17,8 @@ from set_minus import set_minus
 from max_array import max_array
 from norm_table import norm_table
 from condp import condp
+from condexp import condexp
+
 # Legacy
 from subv2ind import subv2ind
 
@@ -31,4 +33,5 @@ __all__ = ['assignment_to_index',
            'subv2ind',
            'max_array',
            'norm_table',
-           'condp']
+           'condp',
+           'condexp']
