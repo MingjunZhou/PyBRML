@@ -6,6 +6,11 @@
 #Description :
 
 
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+
 def draw_layout(adj, labels=None, node_type=None, coord=None):
     """Maximise a potential over variables.
 
@@ -39,3 +44,19 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
         None
 
     """
+    if not isinstance(adj, np.ndarray):
+        adj = np.array(adj)
+    n_node = adj.shape[0]
+    g = nx.Graph()
+    for row in range(n_node):
+        for col in range(row + 1, n_node):
+            if adj[row, col] == 1:
+                g.add_edge(row, col)
+    nx.draw(g)
+    plt.show()
+
+
+if __name__ == "__main__":
+    A = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
+                  [1, 1, 0, 1], [0, 1, 1, 0]])
+    draw_layout(A)
