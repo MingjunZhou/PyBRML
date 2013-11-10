@@ -13,9 +13,8 @@ import numpy as np
 import sys
 sys.path.append("..")
 from brml.variable import variable
-from brml.potential import potential
+from brml.Potential import Potential
 from brml.multpots import multpots
-from brml.potvariables import potvariables
 from brml.setpot import setpot
 from brml.condpot import condpot
 from brml.dag import dag
@@ -39,7 +38,7 @@ variable[alarm].domain = ['yes', 'no']
 variable[radio].name = 'radio'
 variable[radio].domain = ['yes', 'no']
 
-pot = [potential() for i in range(4)]
+pot = [Potential() for i in range(4)]
 
 pot[burglar].variables = np.array([burglar])
 pot[burglar].card = np.array([2])
