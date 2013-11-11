@@ -9,10 +9,11 @@
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
+from .make_layout import make_layout
 
 
-def draw_layout(adj, labels=None, node_type=None, coord=None):
-    """Maximise a potential over variables.
+def draw_layout(adj, gtype='directed', labels=None, node_type=None, coord=None):
+    """Draw a layout for the graph represented by the adjacency matrix.
 
     Usage :
         g, coord = draw_layout(adj<, labels, node_t, coord>)
@@ -20,6 +21,11 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
     Parameters :
         adj : 2-d nd.ndarray[n_node, n_node]
             Adjacency matrix, the row is source, and the coloumn is sink.
+
+        gtype : 2-value string : 'directed' | 'undirected', optional :
+        'directed' :
+            'directed' for the directed graph, 'undirected' for the undirected
+            graph
 
         labels : string sequence[n_node], optional, default : None :
             Labels for the nodes. Default is a integer list
@@ -44,10 +50,13 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
         None
 
     """
-    if not isinstance(adj, np.ndarray):
-        adj = np.array(adj)
     n_node = adj.shape[0]
 
+    if gtype == 'directed':
+        g = nx.DiGraph(adj)
+    else:
+        g = nx.Graph(adj)
+    
     if labels is None:
         labels = []
         for i in range(n_node):
@@ -59,14 +68,9 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
         node_type = np.array(node_type, dtype=np.int8)
 
     if coord is None:
-
+        coord = make_layout(adj, g)
     
-    g = nx.Graph()
-    for row in range(n_node):
-        g.add_node(row)
-        for col in range(row + 1, n_node):
-            if adj[row, col] == 1:
-                g.add_edge(row, col)
+    
     return g
 
 if __name__ == "__main__":
