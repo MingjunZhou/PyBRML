@@ -15,7 +15,7 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
     """Maximise a potential over variables.
 
     Usage :
-        h, coord = draw_layout(adj<, labels, node_t, coord>)
+        g, coord = draw_layout(adj<, labels, node_t, coord>)
 
     Parameters :
         adj : 2-d nd.ndarray[n_node, n_node]
@@ -34,7 +34,7 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
             calls make_layout.
 
     Returns :
-        h : Object handler
+        g : networkx graph 
 
         coord : float np.ndarray[n_node, 2] :
             Coordinates of nodes on the unit square.
@@ -47,16 +47,31 @@ def draw_layout(adj, labels=None, node_type=None, coord=None):
     if not isinstance(adj, np.ndarray):
         adj = np.array(adj)
     n_node = adj.shape[0]
+
+    if labels is None:
+        labels = []
+        for i in range(n_node):
+            labels.append(str(i))
+    
+    if node_type is None:
+        node_type = np.zeros(n_node, dtype=np.int8)
+    else:
+        node_type = np.array(node_type, dtype=np.int8)
+
+    if coord is None:
+
+    
     g = nx.Graph()
     for row in range(n_node):
+        g.add_node(row)
         for col in range(row + 1, n_node):
             if adj[row, col] == 1:
                 g.add_edge(row, col)
-    nx.draw(g)
-    plt.show()
-
+    return g
 
 if __name__ == "__main__":
     A = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                   [1, 1, 0, 1], [0, 1, 1, 0]])
-    draw_layout(A)
+    g = draw_layout(A)
+    nx.draw(g)
+    plt.show()
