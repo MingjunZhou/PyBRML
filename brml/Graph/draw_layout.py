@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 from .make_layout import make_layout
 
 
-def draw_layout(adj, gtype='directed', labels=None, node_type=None, coord=None):
+def draw_layout(adj, gtype='directed',
+                labels=None, node_type=None, coord=None):
     """Draw a layout for the graph represented by the adjacency matrix.
 
     Usage :
@@ -40,7 +41,7 @@ def draw_layout(adj, gtype='directed', labels=None, node_type=None, coord=None):
             calls make_layout.
 
     Returns :
-        g : networkx graph 
+        g : networkx graph
 
         coord : float np.ndarray[n_node, 2] :
             Coordinates of nodes on the unit square.
@@ -56,26 +57,42 @@ def draw_layout(adj, gtype='directed', labels=None, node_type=None, coord=None):
         g = nx.DiGraph(adj)
     else:
         g = nx.Graph(adj)
-    
+
     if labels is None:
         labels = []
         for i in range(n_node):
             labels.append(str(i))
-    
+
     if node_type is None:
         node_type = np.zeros(n_node, dtype=np.int8)
     else:
         node_type = np.array(node_type, dtype=np.int8)
+    print "node_type=", node_type
+    square_nodes = node_type.nonzero()[0]
+    circle_nodes = (node_type == 0).nonzero()[0]
 
     if coord is None:
-        coord = make_layout(adj, g)
-    
-    
-    return g
+        x, y = make_layout(adj, g)
+        coord = np.vstack((x, y))
+        coord = coord.transpose()
+    pos1 = nx.spring_layout(g)
+    print "pos1=", pos1
+    pos_dict = {i: co for i, co in enumerate(coord)}
+    print "pos_dict=", pos_dict
+    print "sqaure_nodes=", square_nodes
+    print "circle_nodes=", circle_nodes
+    if square_nodes.size != 0:
+        nx.draw_networkx_nodes(g, pos=pos_dict,
+                               nodelist=list(square_nodes), node_shape='s')
+    if circle_nodes.size != 0:
+        nx.draw_networkx_nodes(g, pos=pos_dict,
+                               nodelist=list(circle_nodes), node_shape='o')
+ 
+    nx.draw_networkx_edges(g, pos=pos1)
+    plt.show()
+    #return g
 
 if __name__ == "__main__":
     A = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                   [1, 1, 0, 1], [0, 1, 1, 0]])
-    g = draw_layout(A)
-    nx.draw(g)
-    plt.show()
+    draw_layout(A)

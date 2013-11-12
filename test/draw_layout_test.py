@@ -1,4 +1,4 @@
-#File :  make_layout_test.py
+#File :  draw_layout_test.py
 #Author : Mingjun Zhou <mingjun.zhou@gmail.com>
 #Version : 0.1
 #Date : 2013-11-12
@@ -9,23 +9,21 @@ import unittest
 import numpy as np
 import sys
 sys.path.append("..")
-from brml.Graph.make_layout import make_layout
+from brml.Graph.draw_layout import draw_layout
 
 
-class MakeLayoutTestCase(unittest.TestCase):
+class DrawLayoutTestCase(unittest.TestCase):
     def test_case1(self):
         adj = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                         [1, 1, 0, 1], [0, 1, 1, 0]])
-        x, y = make_layout(adj, gtype='undirected')
-        print "x=", x
-        print "y=", y
+        draw_layout(adj)
         ans = np.array([1, 2, 2, 3])
         #assert np.allclose(ans, depth)
 
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(MakeLayoutTestCase("test_case1"))
+    suite.addTest(DrawLayoutTestCase("test_case1"))
 
     runner = unittest.TextTestRunner()
     runner.run(suite)

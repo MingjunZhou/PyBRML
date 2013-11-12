@@ -16,7 +16,7 @@ def make_layout(adj, g=None, gtype='directed'):
     """Creates a layout from an adjacency matrix.
 
     Usage :
-        coord = make_layout(adj<, g, gtype='directed'>)
+        x, y = make_layout(adj<, g, gtype='directed'>)
 
     Parameters :
         adj : integer nd.ndarray[n_node, n_node] :
@@ -29,8 +29,11 @@ def make_layout(adj, g=None, gtype='directed'):
             'directed' if g is directed, 'undirected' if g is undirected.
 
     Returns :
-        coord : 2-d nd.ndarray[n_node, 2] :
-            Positions of nodes.
+        x : 1-d nd.ndarray[n_node] :
+            X Positions of nodes.
+        
+        y : 1-d nd.ndarray[n_node] :
+            Y Positions of nodes.
 
     Raises :
         None
@@ -64,9 +67,6 @@ def make_layout(adj, g=None, gtype='directed'):
     for i in range(np.max(level)):
         idx = (level == i).nonzero()[0]
         offset = (i % 2 - 0.5) / 10.0
-        x[idx] = np.arange(idx.size) / (idx.size + 1) + offset
+        x[idx] = 1.0 * np.arange(idx.size) / (idx.size + 1) + offset
     
-#cc = np.concatenate((x, y), axis=0)
-    cc = np.hstack((x.transpose(), y.transpose()))
-    print "cc=", cc
     return x, y
