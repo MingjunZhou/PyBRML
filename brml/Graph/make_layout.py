@@ -9,6 +9,7 @@
 import networkx as nx
 from networkx.algorithms.dag import topological_sort
 import numpy as np
+from .poset import poset
 
 
 def make_layout(adj, g=None, gtype='directed'):
@@ -44,8 +45,28 @@ def make_layout(adj, g=None, gtype='directed'):
 
     try:
         seq = topological_sort(g)
-    except nx.NetworkXUnfeasible:
+    except (nx.NetworkXError, nx.NetworkXUnfeasible):
         seq = []
 
     if not seq:  # seq is empty
-        level = poset(adj)' + 1
+        level = poset(adj, 0) - 1
+    else:  # not empty
+        level = np.zeros(n_node)
+        for node in seq:
+            idx = adj[:, node].nonzero()[0]
+            if not idx:
+                l = np.max(level[idx])
+                level[node] = l + 1
+    print "level=", level
+    y = (level + 1.0) / (np.max(level) + 2.0)
+    y = 1.0 - y
+    x = np.zeros(y.size, dtype=float)
+    for i in range(np.max(level)):
+        idx = (level == i).nonzero()[0]
+        offset = (i % 2 - 0.5) / 10.0
+        x[idx] = np.arange(idx.size) / (idx.size + 1) + offset
+    
+#cc = np.concatenate((x, y), axis=0)
+    cc = np.hstack((x.transpose(), y.transpose()))
+    print "cc=", cc
+    return x, y
