@@ -8,11 +8,22 @@
 
 import networkx as nx
 import numpy as np
-import matplotlib.pyplot as plt
 from .make_layout import make_layout
 
 
-def draw_layout(adj, gtype='directed',
+def topological_layout(adj, g):
+    x, y = make_layout(adj, g)
+    coord = np.vstack((x, y))
+    coord = coord.transpose()
+    pos_dict = {i: co for i, co in enumerate(coord)}
+    return pos_dict
+
+
+def custom_layout(coord):
+    return {i: co for i, co in enumerate(coord)}
+
+
+def draw_layout(adj, gtype='directed', layout='topological',
                 labels=None, node_type=None, coord=None):
     """Draw a layout for the graph represented by the adjacency matrix.
 
@@ -23,10 +34,22 @@ def draw_layout(adj, gtype='directed',
         adj : 2-d nd.ndarray[n_node, n_node]
             Adjacency matrix, the row is source, and the coloumn is sink.
 
-        gtype : 2-value string : 'directed' | 'undirected', optional :
-        'directed' :
+        gtype : string, optional, default : 'directed' :
             'directed' for the directed graph, 'undirected' for the undirected
             graph
+
+        layout : string, optional, default : 'topological' :
+            Graph layout which gives the nodes' positions.
+            'circular': Position nodes on a circle.
+            'random': Position nodes uniformly at random in the unit square.
+            'shell': Position nodes in concentric circles.
+            'spring': Position nodes using Fruchterman-Reingold force-dircted
+                      algorithm.
+            'spectral': Position nodes using the eigenvectors of the graph
+                        Laplacian.
+            'topological': Position nodes in the levels given by
+                           topological_sort algorithm.
+            'custom': Position nodes given by the 'coord' parameter.
 
         labels : string sequence[n_node], optional, default : None :
             Labels for the nodes. Default is a integer list
@@ -70,15 +93,19 @@ def draw_layout(adj, gtype='directed',
     square_nodes = node_type.nonzero()[0]
     circle_nodes = (node_type == 0).nonzero()[0]
 
-    if coord is None:
-        x, y = make_layout(adj, g)
-        coord = np.vstack((x, y))
-        coord = coord.transpose()
-    pos_dict = {i: co for i, co in enumerate(coord)}
+    graph_layout = {'circular': lambda g: nx.circular_layout(g),
+                    'random': lambda g: nx.random_layout(g),
+                    'shell': lambda g: nx.shell_layout(g),
+                    'spring': lambda g: nx.spring_layout(g),
+                    'spectral': lambda g: nx.spectral_layout(g)}
+    if layout == 'topological':
+        pos_dict = topological_layout(adj, g)
+    elif layout == 'custom':
+        pos_dict = custom_layout(coord)
+    else:
+        pos_dict = graph_layout[layout](g)
+
     label_dict = {i: la for i, la in enumerate(labels)}
-    print "pos_dict=", pos_dict
-    print "sqaure_nodes=", square_nodes
-    print "circle_nodes=", circle_nodes
     if square_nodes.size != 0:
         nx.draw_networkx_nodes(g, pos=pos_dict,
                                nodelist=list(square_nodes), node_shape='s')
@@ -88,5 +115,4 @@ def draw_layout(adj, gtype='directed',
 
     nx.draw_networkx_edges(g, pos=pos_dict)
     nx.draw_networkx_labels(g, pos=pos_dict, labels=label_dict)
-    plt.show()
-    #return g
+    return g, coord

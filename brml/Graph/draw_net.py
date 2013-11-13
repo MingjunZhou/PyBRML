@@ -5,38 +5,24 @@
 #License : BSD 3 clause
 #Description :
 
-import networkx as nx
+from .draw_layout import draw_layout
 
 
-def draw_net():
-    """Maximise a potential over variables.
+def draw_net(adj):
+    """Draw net for the adjacency matrix.
 
     Usage :
-        newpot, maxstate = maxpot(pot, invariables)
+        draw_layout(adj, layout='topological')
 
     Parameters :
-        pot : Potential class :
-            The target potential to be maximised. After the maximisation, the
-            origin pot is not changed, instead we get a newpot.
-
-        varargin : sequence[n_variables, ] or nd.ndarray[n_variables, ] :
-            Several variales to maximise the potential over.
-
-        maxover : int, optional, default: 1 :
-            If maxover == 1 the potential is maxed over variables, otherwise
-            potential is maxed over everything except variables.
+        adj : np.ndarray[n_node, n_node] :
+            Adjacency matrix.
 
     Returns :
-        newpot : Potential class :
-            A new pot that maximised the origin potential.
-
-        maxstate : nd.array[n_variables, ] :
-            When the variables in varargin equal to the states in maxstate,
-            we get the maximised potential.
+        None
 
     Raises :
         None
 
     """
-
-     
+    draw_layout(adj, layout='topological')

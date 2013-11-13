@@ -9,27 +9,27 @@ import unittest
 import numpy as np
 import sys
 sys.path.append("..")
-from brml.Graph.draw_layout import draw_layout
+from brml.Graph.draw_net import draw_net
 import matplotlib.pyplot as plt
 
-
-class DrawLayoutTestCase(unittest.TestCase):
+class DrawNetTestCase(unittest.TestCase):
     def test_case1(self):
         adj = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                         [1, 1, 0, 1], [0, 1, 1, 0]])
-        draw_layout(adj, layout='spring', node_type=[1, 1, 1, 1])
+        draw_net(adj)
         plt.show()
 
     def test_case2(self):
         adj = np.array([[0, 1, 1, 0], [0, 0, 1, 1],
                         [0, 0, 0, 1], [0, 0, 0, 0]])
-        draw_layout(adj)
+        draw_net(adj)
         plt.show()
+
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(DrawLayoutTestCase("test_case1"))
-    suite.addTest(DrawLayoutTestCase("test_case2"))
+    suite.addTest(DrawNetTestCase("test_case1"))
+    suite.addTest(DrawNetTestCase("test_case2"))
 
     runner = unittest.TextTestRunner()
     runner.run(suite)
