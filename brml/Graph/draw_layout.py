@@ -67,7 +67,6 @@ def draw_layout(adj, gtype='directed',
         node_type = np.zeros(n_node, dtype=np.int8)
     else:
         node_type = np.array(node_type, dtype=np.int8)
-    print "node_type=", node_type
     square_nodes = node_type.nonzero()[0]
     circle_nodes = (node_type == 0).nonzero()[0]
 
@@ -75,8 +74,6 @@ def draw_layout(adj, gtype='directed',
         x, y = make_layout(adj, g)
         coord = np.vstack((x, y))
         coord = coord.transpose()
-    pos1 = nx.spring_layout(g)
-    print "pos1=", pos1
     pos_dict = {i: co for i, co in enumerate(coord)}
     label_dict = {i: la for i, la in enumerate(labels)}
     print "pos_dict=", pos_dict
@@ -88,13 +85,8 @@ def draw_layout(adj, gtype='directed',
     if circle_nodes.size != 0:
         nx.draw_networkx_nodes(g, pos=pos_dict,
                                nodelist=list(circle_nodes), node_shape='o')
- 
+
     nx.draw_networkx_edges(g, pos=pos_dict)
     nx.draw_networkx_labels(g, pos=pos_dict, labels=label_dict)
     plt.show()
     #return g
-
-if __name__ == "__main__":
-    A = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
-                  [1, 1, 0, 1], [0, 1, 1, 0]])
-    draw_layout(A, node_type=[1,1,1,1])

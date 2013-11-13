@@ -17,13 +17,16 @@ class DrawLayoutTestCase(unittest.TestCase):
         adj = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                         [1, 1, 0, 1], [0, 1, 1, 0]])
         draw_layout(adj, node_type=[1,1,1,1])
-        ans = np.array([1, 2, 2, 3])
-        #assert np.allclose(ans, depth)
 
+    def test_case2(self):
+        adj = np.array([[0, 1, 1, 0], [0, 0, 1, 1],
+                        [0, 0, 0, 1], [0, 0, 0, 0]])
+        draw_layout(adj)
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
     suite.addTest(DrawLayoutTestCase("test_case1"))
+    suite.addTest(DrawLayoutTestCase("test_case2"))
 
     runner = unittest.TextTestRunner()
     runner.run(suite)
