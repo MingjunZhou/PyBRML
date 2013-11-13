@@ -78,6 +78,7 @@ def draw_layout(adj, gtype='directed',
     pos1 = nx.spring_layout(g)
     print "pos1=", pos1
     pos_dict = {i: co for i, co in enumerate(coord)}
+    label_dict = {i: la for i, la in enumerate(labels)}
     print "pos_dict=", pos_dict
     print "sqaure_nodes=", square_nodes
     print "circle_nodes=", circle_nodes
@@ -88,11 +89,12 @@ def draw_layout(adj, gtype='directed',
         nx.draw_networkx_nodes(g, pos=pos_dict,
                                nodelist=list(circle_nodes), node_shape='o')
  
-    nx.draw_networkx_edges(g, pos=pos1)
+    nx.draw_networkx_edges(g, pos=pos_dict)
+    nx.draw_networkx_labels(g, pos=pos_dict, labels=label_dict)
     plt.show()
     #return g
 
 if __name__ == "__main__":
     A = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                   [1, 1, 0, 1], [0, 1, 1, 0]])
-    draw_layout(A)
+    draw_layout(A, node_type=[1,1,1,1])

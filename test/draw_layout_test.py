@@ -16,7 +16,7 @@ class DrawLayoutTestCase(unittest.TestCase):
     def test_case1(self):
         adj = np.array([[0, 1, 1, 0], [1, 0, 1, 1],
                         [1, 1, 0, 1], [0, 1, 1, 0]])
-        draw_layout(adj)
+        draw_layout(adj, node_type=[1,1,1,1])
         ans = np.array([1, 2, 2, 3])
         #assert np.allclose(ans, depth)
 
