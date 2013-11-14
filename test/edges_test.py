@@ -33,13 +33,13 @@ class EdgesTestCase(unittest.TestCase):
         assert np.allclose(w_ans, w)
 
     def test_case3(self):
-        adj = np.array([[0, 0, 1, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 1],
-                        [0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0],
+        adj = np.array([[0, 0, 1.2, 1.4, 0, 0, 0], [0, 0, 0, 5.1, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3.1, 4.2],
+                        [0, 0, 0, 0, 0, 0, 1.0], [0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0]])
         e, w = edges(adj)
         e_ans = np.array([[0, 2], [0, 3], [1, 3], [3, 5], [3, 6], [4, 6]])
-        w_ans = np.ones(6)
+        w_ans = np.array([1.2, 1.4, 5.1, 3.1, 4.2, 1.0])
         assert np.allclose(e_ans, e)
         assert np.allclose(w_ans, w)
 

@@ -23,6 +23,10 @@ def parents(x, adj):
                 t = t[0]
             p = np.concatenate((p, t))
     else:
-        p = adj[:, x].nonzero()[0]
+        p = adj[:, x].nonzero()
+        if not p:
+            p = []
+        else:
+            p = p[0]
     p = np.unique(p)
     return p
