@@ -31,7 +31,7 @@ def poset(adj, root):
 
     """
     if not isinstance(adj, np.ndarray):
-        adj = np.array(adj, dtype=np.int8)
+        adj = np.array(adj)
     n_node = adj.shape[0]
     adj = adj + adj.transpose()
     depth = np.zeros(n_node, dtype=int)

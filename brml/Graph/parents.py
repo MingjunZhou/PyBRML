@@ -10,9 +10,9 @@ import numpy as np
 import collections
 
 def parents(x, adj):
-    """Parents of anode given an adjacency matrix."""
+    """Parents of a node given an adjacency matrix."""
     if not isinstance(adj, np.ndarray):
-        adj = np.array(adj, dtype=int)
+        adj = np.array(adj)
     if isinstance(x, collections.Sequence):
         p = np.array([], dtype=int)
         for i in x:

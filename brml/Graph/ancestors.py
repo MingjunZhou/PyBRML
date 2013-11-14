@@ -33,7 +33,7 @@ def ancestors(x, adj):
 
     """
     if not isinstance(adj, np.ndarray):
-        adj = np.array(adj, dtype=int)
+        adj = np.array(adj)
 
     done = False
     a = parents(x, adj)
