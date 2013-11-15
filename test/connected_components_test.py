@@ -20,8 +20,6 @@ class ConnectedComponentsTestCase(unittest.TestCase):
                         [0, 0, 0, 0, 0, 0, 0]])
         cc = connected_components(adj)
         cc_ans = np.array([1, 2, 1, 1, 3, 1, 3])
-        print "cc=", cc
-        print "cc_ans=", cc_ans
         assert np.allclose(cc_ans, cc)
 
 if __name__ == "__main__":

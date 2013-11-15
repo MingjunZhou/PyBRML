@@ -9,7 +9,7 @@ import unittest
 import numpy as np
 import sys
 sys.path.append("..")
-from brml.Graph.ancestral_order_test import ancestral_order
+from brml.Graph.ancestral_order import ancestral_order
 
 
 class ConnectedComponentsTestCase(unittest.TestCase):
@@ -18,11 +18,9 @@ class ConnectedComponentsTestCase(unittest.TestCase):
                         [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3.1, 4.1],
                         [0, 0, 0, 0, 0, 0, 1.0], [0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0]])
-        cc = ancestral_order(adj)
-        cc_ans = np.array([4, 1, 0, 3, 6, 5, 2])
-        print "cc=", cc
-        print "cc_ans=", cc_ans
-        assert np.allclose(cc_ans, cc)
+        order, noparents_vars = ancestral_order(adj)
+        order_ans = np.array([4, 1, 0, 3, 6, 5, 2])
+        assert np.allclose(order_ans, order)
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
