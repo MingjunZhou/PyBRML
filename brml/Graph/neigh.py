@@ -41,20 +41,20 @@ def neigh(v, adj, rtype='union'):
     if rtype == 'union':
         n = np.array([], dtype=int)
         for vi in v:
-            a = (adj[:, vi] + adj[vi, :]).nonzero()
-            if not a:
-                a = []
-            else:
-                a = a[0]
+            a, = (adj[:, vi] + adj[vi, :]).nonzero()
+            #if not a:
+            #    a = []
+            #else:
+            #    a = a[0]
             n = np.concatenate((n, a))
         n = np.unique(np.setdiff1d(n, v))
     else:
         n = []
         for vi in v:
-            a = (adj[:, vi] + adj[vi, :]).nonzero()
-            if not a:
-                a = []
-            else:
-                a = a[0]
+            a, = (adj[:, vi] + adj[vi, :]).nonzero()
+            #if not a:
+            #    a = []
+            #else:
+            #    a = a[0]
             n.append(np.setdiff1d(a, [vi]))
     return n

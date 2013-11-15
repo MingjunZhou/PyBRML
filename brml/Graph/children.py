@@ -13,17 +13,17 @@ def children(x, adj):
     if isinstance(x, collections.Sequence):
         c = np.array([], dtype=int)
         for i in x:
-            t = adj[i, :].nonzero()
-            if not t:
-                t = []
-            else:
-                t = t[0]
+            t, = adj[i, :].nonzero()
+            #if not t:
+            #    t = []
+            #else:
+            #    t = t[0]
             c = np.concatenate((c, t))
     else:
-        c = adj[x, :].nonzero()
-        if not c:
-            c = []
-        else:
-            c = c[0]
+        c, = adj[x, :].nonzero()
+        #if not c:
+        #    c = []
+        #else:
+        #    c = c[0]
     c = np.unique(c)
     return c
