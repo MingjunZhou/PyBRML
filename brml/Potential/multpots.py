@@ -10,9 +10,12 @@ if a table of type 'zero' is encountered, the result is a table of type
 'zero' with table 0, and empty variables.
 """
 
+import collections
 
 def multpots(pots):
     # import copy
+    if not isinstance(pots, collections.Sequence):
+        pots = [pots]
     newpot = pots[0]
     for i in range(1, len(pots)):  # loop over all the Potentials
         #FIX ME: did not check dimension consistency
