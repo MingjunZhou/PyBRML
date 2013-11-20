@@ -16,17 +16,19 @@ def cond_indep_pot(pot, X, Y, Z):
     """Returns the mean absolute deviatian between p(X|Z)p(Y|Z)p(Z)
     and p(X,Y,Z)"""
     allvariables = np.concatenate((X, Y, Z))
-    mp = multpots(pot)
-    print "mp.variables=", mp.variables
-    print "mp.card=", mp.card
-    print "mp.table=", mp.table
+#    mp = multpots(pot)
+#    print "mp.variables=", mp.variables
+#    print "mp.card=", mp.card
+#    print "mp.table=", mp.table
     jointpot = sumpot(multpots(pot), allvariables, 0)
-    print "jointpot.variables=", jointpot.variables
-    print "jointpot.card=", jointpot.card
+#    print "jointpot.variables=", jointpot.variables
+#    print "jointpot.card=", jointpot.card
     #print "jointpot.table=", jointpot.table
     pXgZ = condpot(jointpot, X, Z)
+    #print "pXgZ", pXgZ.table
     pYgZ = condpot(jointpot, Y, Z)
     pZ = condpot(jointpot, Z)
     pXgZpYgZpZ = multpots([pXgZ, pYgZ, pZ])
+    #print "pXgZpYgZpZ.table=", pXgZpYgZpZ.table
     c = np.mean(np.abs(pXgZpYgZpZ.table.flatten() - jointpot.table.flatten()))
     return c

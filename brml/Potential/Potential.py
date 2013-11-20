@@ -90,6 +90,12 @@ class Potential(object):
         dummy, mapA, all_mapA = ismember(self.variables, newpot.variables)
         dummy, mapB, all_mapB = ismember(other.variables, newpot.variables)
 
+        #print "self.variables:", self.variables
+        #print "other.variables:", other.variables
+        #print "newpot.variables:", newpot.variables
+        #print "mapA:", mapA
+        #print "mapB:", mapB
+        #print "\n"
         newpot.card = np.zeros(newpot.variables.size, 'int8')
         newpot.card[mapA] = list(self.card)
         newpot.card[mapB] = list(other.card)

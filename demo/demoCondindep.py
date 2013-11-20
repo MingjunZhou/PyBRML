@@ -30,28 +30,34 @@ for pot in pots_list:
         card = table.shape
         l_var = len(variables)
         if l_var > 2:
-            print "enter"
+#            print "enter"
             #variables = variables.tolist()
             #variables = variables[2:] + variables[0:2]
-            new_axis = range(l_var-2, l_var) + range(l_var-2)
-            table = np.transpose(table, new_axis)
+            #new_axis = range(l_var-2, l_var) + range(l_var-2)
+            #axis1 = range(l_var-2, l_var)
+            #axis2 = range(l_var-2)
+            #axis2.reverse()
+            #new_axis = axis1 + axis2 
+            #table = np.transpose(table, new_axis)
             card = table.shape
     allpots.append(Potential(variables, card, table))
 
-for i, pot in enumerate(allpots):
-    print "\npot No.", i
-    print "variables=", pot.variables
-    print "table=", pot.table
 
-two_pot = multpots(allpots[0:8])
-three_pot = multpots(allpots[0:3])
-threeaftertwo_pot = multpots([two_pot, allpots[2]])
-#print "\nthe third:", allpots[2].table, allpots[2].variables
-#print "\n2:", two_pot.table
-#print "\n3 after 2:", threeaftertwo_pot.table
-print "\n6:", two_pot.table
+#two_pot = multpots(allpots)
+#tt_pot = multpots(allpots[0:6])
+#print "\n6_table:", two_pot.table
+#print "\n6_variables:", two_pot.variables
+#print "tt_pot.value=", tt_pot.table[0,1,0,1,0,1,1]
+#print "t7.value=", allpots[6].table[0,1,0]
+#print "\none_value:", two_pot.table[0,1,0,1,0,1,0,1]
+#print "\n6_card:", two_pot.table.shape
+
+#for i, pot in enumerate(allpots):
+#    print "\npot No.", i
+#    print "variables=", pot.variables
+#    print "table=", pot.table
 X = [1, 4]
 Y = [2]
 Z = [3, 5]
 
-print cond_indep_pot(allpots[0:3], X, Y, Z)
+print cond_indep_pot(allpots[0:8], X, Y, Z)

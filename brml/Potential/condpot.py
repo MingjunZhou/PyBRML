@@ -44,8 +44,8 @@ def condpot(pots, x=None, y=None):
         #print "pxy.table:", pxy.table
         #print "py.table:", py.table
         newpots[i] = pxy / py
-        newpots[i].table = newpots[i].table / np.sum(newpots[i].table)
-
+        #newpots[i].table = newpots[i].table / np.sum(newpots[i].table)
+    #np.sum
     if len(pots) == 1:
         return newpots[0]
     else:
