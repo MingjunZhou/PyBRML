@@ -8,7 +8,7 @@ import children
 import connected_components
 import edges
 import neigh
-
+import dag
 
 __all__ = ['draw_layout',
            'draw_net',
@@ -19,4 +19,5 @@ __all__ = ['draw_layout',
            'children',
            'connected_components',
            'edges',
-           'neigh']
+           'neigh',
+           'dag']

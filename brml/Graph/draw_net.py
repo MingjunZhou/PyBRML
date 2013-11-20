@@ -8,7 +8,7 @@
 from .draw_layout import draw_layout
 
 
-def draw_net(adj):
+def draw_net(adj, layout='topological'):
     """Draw net for the adjacency matrix.
 
     Usage :
@@ -25,4 +25,4 @@ def draw_net(adj):
         None
 
     """
-    draw_layout(adj, layout='topological')
+    draw_layout(adj, layout)

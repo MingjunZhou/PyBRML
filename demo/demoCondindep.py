@@ -8,13 +8,14 @@
 """Chest Clinic example: test independecies"""
 print __doc__
 
-import numpy as np
+import matplotlib.pyplot as plt
 import scipy.io
 import sys
 sys.path.append("..")
 from brml.Potential import Potential
 from brml.Potential.cond_indep_pot import cond_indep_pot
-from brml.Potential.multpots import multpots
+from brml.Graph.dag import dag
+from brml.Graph.draw_layout import draw_layout
 
 
 mat = scipy.io.loadmat('../data/chestclinic.mat')
@@ -56,6 +57,9 @@ for pot in pots_list:
 #    print "\npot No.", i
 #    print "variables=", pot.variables
 #    print "table=", pot.table
+A = dag(allpots)
+draw_layout(A, layout='spring', labels=range(1, 9))
+plt.show()
 X = [1, 4]
 Y = [2]
 Z = [3, 5]
