@@ -13,7 +13,7 @@ def parents(x, adj):
     """Parents of a node given an adjacency matrix."""
     if not isinstance(adj, np.ndarray):
         adj = np.array(adj)
-    if isinstance(x, collections.Sequence):
+    if isinstance(x, (collections.Sequence, np.ndarray)):
         p = np.array([], dtype=int)
         for i in x:
             t, = adj[:, i].nonzero()
@@ -22,6 +22,8 @@ def parents(x, adj):
             #else:
             #    t = t[0]
             p = np.concatenate((p, t))
+    #elif x:
+    #    p = np.array([])
     else:
         p, = adj[:, x].nonzero()
         #if not p:
