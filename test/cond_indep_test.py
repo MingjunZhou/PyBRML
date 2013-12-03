@@ -32,9 +32,6 @@ class CondIndepTestCase(unittest.TestCase):
                     card = table.shape
             allpots.append(Potential(variables, card, table))
         self.A = dag(allpots)
-        #self.X = [1, 4]
-        #self.Y = [2]
-        #self.Z = [3, 5]
 
     def test_case1(self):
         X = [0, 3]
@@ -46,12 +43,27 @@ class CondIndepTestCase(unittest.TestCase):
         X = [5]
         Y = [6]
         Z = [7]
-        assert cond_indep(self.A, X, Y, Z) is True 
+        assert cond_indep(self.A, X, Y, Z) is True
+
+    def test_case3(self):
+        X = [1]
+        Y = [7]
+        Z = [3]
+        assert cond_indep(self.A, X, Y, Z) is True
+
+    def test_case4(self):
+        X = [1]
+        Y = [7]
+        Z = [3, 6]
+        assert cond_indep(self.A, X, Y, Z) is False
+
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
     suite.addTest(CondIndepTestCase("test_case1"))
     suite.addTest(CondIndepTestCase("test_case2"))
+    suite.addTest(CondIndepTestCase("test_case3"))
+    suite.addTest(CondIndepTestCase("test_case4"))
 
     runner = unittest.TextTestRunner()
     runner.run(suite)

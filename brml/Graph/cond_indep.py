@@ -57,7 +57,6 @@ def cond_indep(A, X, Y, Z):
         Z = np.array([Z])
     elif not isinstance(Z, np.ndarray):
         Z = np.array(Z)
-    print "init A=", A
     n_nodes = A.shape[0]
     U = np.concatenate((X, Y, Z))
     if np.mean(np.abs(A - A.transpose())) > 0:  # DAG
@@ -68,41 +67,31 @@ def cond_indep(A, X, Y, Z):
         rnodes = np.setdiff1d(np.arange(n_nodes), np.concatenate((aset, U)))
         A[rnodes, :] = 0
         A[:, rnodes] = 0
-        #print "A after remove=", A
         # moralise the remaining graph
         for i in range(n_nodes):
             parents, = A[:, i].nonzero()
             A[np.ix_(parents, parents)] = 1  # add links between parents
-        
-        print "before non A=", A
-        
-        x_idxs, y_idxs = (A + A.transpose() > 0).nonzero()
-        print "x_idxs=", x_idxs
-        print "y_idxs=", y_idxs
+
+        idx = A + A.transpose() > 0
         A = np.zeros([n_nodes, n_nodes])
-        A[np.ix_(x_idxs, y_idxs)] = 1.0
+        A[idx] = 1.0
         A = A - np.diag(np.diag(A))
 
-    print "after dag A=", A
     # See if there is a path from X to Y, not via Z:
     # to do this, remove Z from the graph:
     A[Z, :] = 0
     A[:, Z] = 0
     # now find the connections between X and Y
     A = A + np.eye(n_nodes)
-    print "A=", A
     newA = np.eye(n_nodes)
     for i in range(n_nodes):
-        #print "newA=", newA
         newA = np.dot(newA, A)
-    print "newA=", newA
-    x_idxs, y_idxs = (newA > 0).nonzero()
+    idx = newA > 0
     A = np.zeros([n_nodes, n_nodes])
-    A[np.ix_(x_idxs, y_idxs)] = 1
+    A[idx] = 1
     A = A - np.diag(np.diag(A))
     cindep = False
-    print "final A=", A
-    x_idxs, y_idxs = A[np.ix_(X, Y)].nonzero()
-    if x_idxs.size == 0:
+    final_idxs, = A[X, Y].nonzero()
+    if final_idxs.size == 0:
         cindep = True
     return cindep
