@@ -11,7 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-    All modules <modules>
+   Basic Graph Concepts <potential>
+   Graphical Models <graph>
+   Inference <inference>
 
 Indices and tables
 ==================

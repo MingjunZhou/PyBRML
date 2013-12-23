@@ -7,12 +7,13 @@ import variable
 import utils
 import Potential
 import Graph
-
+import Inference
 
 __all__ = ['variable',
            'utils',
            'Potential',
-           'Graph']
+           'Graph',
+           'Inference']
 
 if __name__ == "__main__" and __package__ is None:
         __package__ = "brml"
