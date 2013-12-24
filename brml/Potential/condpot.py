@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+"""
+    %CONDPOT Return a Potential conditioned on another variable
+    % newpot = condpot(pot,x,y)
+    % condition the Potential to return Potential with distribution p(x|y),
+    % summing over remaining variables. If y is empty (or missing), return the
+    % marginal p(x).
+    % If both x and y are missing, just return the normalised table
+"""
 import numpy as np
 from .Potential import Potential
 from ..utils.set_minus import set_minus
@@ -8,14 +16,6 @@ import copy
 
 
 def condpot(pots, x=None, y=None):
-    """
-    %CONDPOT Return a Potential conditioned on another variable
-    % newpot = condpot(pot,x,y)
-    % condition the Potential to return Potential with distribution p(x|y),
-    % summing over remaining variables. If y is empty (or missing), return the
-    % marginal p(x).
-    % If both x and y are missing, just return the normalised table
-    """
     if isinstance(pots, Potential):
         pots = [pots]
     else:
