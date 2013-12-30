@@ -1,14 +1,15 @@
-import draw_layout
-import draw_net
-import make_layout
-import poset
-import parents
-import ancestors
-import children
-import connected_components
-import edges
-import neigh
-import dag
+from draw_layout import draw_layout
+from draw_net import draw_net
+from make_layout import make_layout
+from poset import poset
+from parents import parents
+from ancestors import ancestors
+from children import children
+from connected_components import connected_components
+from edges import edges
+from neigh import neigh
+from dag import dag
+from istree import istree
 
 __all__ = ['draw_layout',
            'draw_net',
@@ -20,4 +21,5 @@ __all__ = ['draw_layout',
            'connected_components',
            'edges',
            'neigh',
-           'dag']
+           'dag',
+           'istree']
