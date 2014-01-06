@@ -1,13 +1,5 @@
 #!/usr/bin/env python
 
-"""
-    %CONDPOT Return a Potential conditioned on another variable
-    % newpot = condpot(pot,x,y)
-    % condition the Potential to return Potential with distribution p(x|y),
-    % summing over remaining variables. If y is empty (or missing), return the
-    % marginal p(x).
-    % If both x and y are missing, just return the normalised table
-"""
 import numpy as np
 from .Potential import Potential
 from ..utils.set_minus import set_minus
@@ -15,18 +7,41 @@ from .sumpot import sumpot
 import copy
 
 
-def condpot(pots, x=None, y=None):
+def condpot(pots, X=None, Y=None):
+    """Return P(X|Y), a potential conditioned on another variable.
+
+    Parameters :
+        pots : sequence[n_pots] of Potential :
+            The target potential.
+
+        X : sequence[n_x, ] or nd.ndarray[n_x, ], optional, default : None :
+            The target variables.
+
+        Y : sequence[n_y, ] or nd.ndarray[n_y, ], optional, default : None :
+            The evidence variables.
+
+    Returns :
+        newpot : Potential :
+            A new pot.
+
+    Raises :
+        None
+
+    Notes :
+        If Y is empty, return the marginal P(X). If both X and Y are missing,
+        just return the normalised table.
+    """
     if isinstance(pots, Potential):
         pots = [pots]
     else:
         pots = list(pots)
 
-    if x is None:
+    if X is None:
         x = np.array([])
     else:
         x = np.array(x)
 
-    if y is None:
+    if Y is None:
         y = np.array([])
     else:
         y = np.array(y)
@@ -50,7 +65,7 @@ def condpot(pots, x=None, y=None):
         return newpots[0]
     else:
         return newpots
-    """
+    """"
     other_axis = setminus(pots
     if y.size == 0:
         intersection, ix, ipot = intersect(x, pot.variables)

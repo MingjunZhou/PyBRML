@@ -13,11 +13,8 @@ from .Potential import Potential
 def maxpot(pot, invariables, over_other=False):
     """Maximise a potential over variables.
 
-    Usage :
-        newpot, max_state = maxpot(pot, invariables[, over_other=False | True])
-
     Parameters :
-        pot : Potential class :
+        pot : Potential :
             The target potential to be maximised. After the maximisation, the
             origin pot is not changed, instead we get a newpot.
 
@@ -29,14 +26,17 @@ def maxpot(pot, invariables, over_other=False):
             potential is maxed over everything except invariables.
 
     Returns :
-        newpot : Potential class :
+        newpot : Potential :
             A new pot that maximised the origin potential.
 
         max_state : nd.array[n_variables, ] :
             pot.table[max_state[i, :]] = newpot.table[i]
+
     Raises :
         None
 
+    Notes :
+        newpot, max_state = maxpot(pot, invariables[, over_other=False | True])
     """
     if not isinstance(invariables, np.ndarray):
         invariables = np.array(invariables)

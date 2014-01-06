@@ -12,31 +12,37 @@ from ..utils.ismember import ismember
 
 def sumpot(pots, variables=None, sumover=1):
     """Sum(marginalise) a Potential over variables.
+
+    Parameters :
+        pots : Potential :
+            A list of Potentials.
+        
+        variables : np.ndarray[n_variables,], optional, default : None :
+            Variables to be summed(marginalized) over.
+
+        sumover : int, optional, default : 1 :
+            If sumover=1 then Potential is summed over variables, otherwise
+            Potential is summed over everything except variables.
+
+    Returns:
+        pots: sequence of Potential :
+            If pots is one np.array, returns the new pots after marginalization.
+            If pots is a list of Potentials, returns the new pots list.
+
+    Raises:
+        None
+    
+    Notes :
         pots = sumpot(pots)
         pots = sumpot(pots, variables)
         pots = sumpot(pots, variables, sumover)
 
-    If called with the additional argument: sumpot(pot, variables, sumover).
-    If sumover=1 then Potential is summed over variables, otherwise the
+        If called with the additional argument: sumpot(pot, variables, sumover).
+        If sumover=1 then Potential is summed over variables, otherwise the
         Potential is summed over everything except variables.
-    If called as sumpot(pot), it is assumed that all variables of Potential
+        If called as sumpot(pot), it is assumed that all variables of Potential
         are to be summed over.
 
-    Args:
-        pots: A list of Potentials.
-        variables:(Optional) A np.array of variables to be summed(marginalized)
-                    over.
-        sumover:(Optional) If sumover=1 then Potential is summed over
-                variables, otherwise Potential is summed over everything
-                except variables.
-
-    Returns:
-        pots: If pots is one np.array, returns the new pots after
-                marginalization.
-              If pots is a list of Potentials, returns the new pots list.
-
-    Raises:
-        None
     """
     if isinstance(pots, Potential):
         pots = [pots]

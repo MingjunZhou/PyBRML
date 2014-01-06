@@ -13,28 +13,26 @@ from .Potential import Potential
 
 
 def orderpot(pot, varargin=None):
-    """
-    Return Potential with variables reordered according to orderpot. If order
-    is missing or empty, the variables are sorted (low to high).
+    """Return Potential with variables reordered according to orderpot.
+
+    Parameters :
+        pot : Potential :
+            The target Potential.
+
+        varargin: sequence[n_variables] or np.ndarray[n_variables], optional, default : None :
+            An array_like of new orders. If varagin is missing or empty,
+            the variables are sorted (low to high).
+
+    Returns :
+        newpot : Potential :
+            The new Potential.
+
+    Raises :
+        None
+
+    Notes :
         newpot = orderpot(pot, <order>)
-
-    Parameters
-    ----------
-
-    pot: brml.Potential.Potential object
-        An object with fileds variables and table.
-        pot.variables is a list of integer that indicates variables's name.
-        pot.table is a np.ndarray of probability distribution.
-
-    varargin: array_like (optional)
-        An array_like of new orders.
-        If varagin is missing or empty, the variables are sorted (low to high)
-
-    Returns
-    -------
-
-    newpot: brml.Potential.Potential
-        the new Potential object
+        If order is missing or empty, the variables are sorted (low to high).
     """
     if not pot:
         return

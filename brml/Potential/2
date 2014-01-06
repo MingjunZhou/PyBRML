@@ -19,7 +19,7 @@ class Potential(object):
 
     Parameters :
         variables : sequence[n_variables] or np.ndarray[n_variables] :
-            Variables of the Potential.
+            Variables in the Potential.
 
         card : sequence[n_variables] or np.ndarray[n_variables] :
             The cardinality of each variable.
@@ -55,9 +55,7 @@ class Potential(object):
         self.table = table
 
     def __add__(self, other):
-        """Sum two Potentials into a single Potential.
-            newpot = pot1 + pot2
-        """
+        # check for empty Potential
         if self.variables.size == 0:
             return copy.deepcopy(other)
         if other.variables.size == 0:
@@ -89,9 +87,7 @@ class Potential(object):
         return newpot
 
     def __mul__(self, other):
-        """Multply two Potentials into a single Potential.
-            newpot = pot1 * pot2
-        """
+        # check for empty Potential
         if self.variables.size == 0:
             return copy.deepcopy(other)
         if other.variables.size == 0:
@@ -133,9 +129,6 @@ class Potential(object):
         return newpot
 
     def __div__(self, other):
-        """Divide one Potential by another Potential into a single Potential.
-            newpot = pot1 \ pot2
-        """
         # It only makes senses in undirected graph.
         # Reference: BRMLtoolbox/+brml/@array/mrdivide.m
         if other.variables.size == 0:
@@ -151,6 +144,4 @@ class Potential(object):
         return newpot
 
     def size(self):
-        """Get the cardinality of the Potential.
-        """
         return self.card

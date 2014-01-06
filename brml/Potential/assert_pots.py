@@ -17,9 +17,6 @@ def assert_two_pots(pot_a, pot_b):
     Raises :
         AssertionError :
             When pot_a is not equal to pot_b.
-
-    Usage :
-        assert_two_pots(pot_a, pot_b)
     """
     assert np.allclose(pot_a.variables, pot_b.variables)
     assert np.allclose(pot_a.card, pot_b.card)
@@ -45,13 +42,24 @@ def assert_var_card_table(variables, card, table):
     Raises :
         AssertionError :
             When variables, card, table are not in accordance.
-
-    Usage :
-        assert_two_pots(variables, card, table)
     """
     assert np.allclose(variables.size, card.size)
     assert np.allclose(card, table.shape)
 
 
 def assert_pot_aligned(pot):
+    """Assert whether a potential is aligned, tha is, the variables,
+    cardinality and table fields of a potential are in accordance.
+
+    Parameters :
+        pot : Potential :
+            The target potential.
+
+    Returns :
+        None
+
+    Raises :
+        AssertionError :
+            When the potential is not aligned.
+    """
     assert_var_card_table(pot.variables, pot.card, pot.table)
