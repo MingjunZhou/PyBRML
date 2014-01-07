@@ -14,10 +14,10 @@ import sys
 sys.path.append("..")
 from brml.variable import variable
 from brml.Potential import Potential
-from brml.multpots import multpots
-from brml.setpot import setpot
-from brml.condpot import condpot
-from brml.dag import dag
+from brml.Potential.multpots import multpots
+from brml.Potential.setpot import setpot
+from brml.Potential.condpot import condpot
+from brml.Graph.dag import dag
 
 
 burglar, earthquake, alarm, radio = range(4)  # Variable order is arbitary

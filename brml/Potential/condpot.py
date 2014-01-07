@@ -14,10 +14,10 @@ def condpot(pots, X=None, Y=None):
         pots : sequence[n_pots] of Potential :
             The target potential.
 
-        X : sequence[n_x, ] or nd.ndarray[n_x, ], optional, default : None :
+        X : sequence[n_x, ] or np.ndarray[n_x, ], optional, default : None :
             The target variables.
 
-        Y : sequence[n_y, ] or nd.ndarray[n_y, ], optional, default : None :
+        Y : sequence[n_y, ] or np.ndarray[n_y, ], optional, default : None :
             The evidence variables.
 
     Returns :
@@ -39,7 +39,7 @@ def condpot(pots, X=None, Y=None):
     if X is None:
         x = np.array([])
     else:
-        x = np.array(x)
+        x = np.array(X)
 
     if Y is None:
         y = np.array([])

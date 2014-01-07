@@ -11,38 +11,39 @@ import numpy as np
 def potvariables(pots):
     """Returns information about all variables in a set of Potentials.
 
-    Return the variables and their number of states.
-    If there is a dimension mismatch in the table then return con = 0.
-    convect(i)=0 reports that variable i has conflicting dimension.
+    Parameters :
+        pots : sequence[n_pots] of Potential :
+            The set of Potentials.
 
-    Args:
-        pots : a set of Potentials.
-
-
-    Returns:
-        variables :
+    Returns :
+        variables : list of int
             A list of all variables in pots.
 
-        nstates :
+        nstates : list of int
             A list of integers. nstates[idx] = number of dimension of
             variables[idx]
 
-        con :
+        con : int
             con = 0 if there is a dimension mismatch in the table;
             con = 1 otherwise
 
-        convect :
+        convect : list of int
             convect(i) = 0 reports that variable i has conflicting
             dimensions
 
-    Raises:
+    Raises :
         NameError :
             An error occured accessing a None set of Potentials
 
         ValueError :
             An error occurred accessing pots with None field or
             deffernt size in table and variables field
+    
+    Notes :
+        variables, nstates, con, convect = potvariables(pots)
 
+        If there is a dimension mismatch in the table then return con = 0.
+        convect(i)=0 reports that variable i has conflicting dimension.
     """
     if not pots:
         raise NameError('Potentials should not be None')

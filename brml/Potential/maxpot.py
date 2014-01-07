@@ -18,7 +18,7 @@ def maxpot(pot, invariables, over_other=False):
             The target potential to be maximised. After the maximisation, the
             origin pot is not changed, instead we get a newpot.
 
-        invariables : sequence[n_variables, ] or nd.ndarray[n_variables, ] :
+        invariables : sequence[n_variables, ] or np.ndarray[n_variables, ] :
             Several variables to maximise the potential over.
 
         maxover : boolean, optional, default: False :

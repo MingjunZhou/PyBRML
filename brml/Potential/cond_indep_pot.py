@@ -20,13 +20,13 @@ def cond_indep_pot(pot, X, Y, Z):
         pot : Potential :
             The target potential.
 
-        X : sequence[n_variables, ] or nd.ndarray[n_variables, ] :
+        X : sequence[n_variables, ] or np.ndarray[n_variables, ] :
             First group of variables.
 
-        Y : sequence[n_variables, ] or nd.ndarray[n_variables, ] :
+        Y : sequence[n_variables, ] or np.ndarray[n_variables, ] :
             Second group of variables.
 
-        Z : sequence[n_variables, ] or nd.ndarray[n_variables, ] :
+        Z : sequence[n_variables, ] or np.ndarray[n_variables, ] :
             Third group of variables.
 
     Returns :

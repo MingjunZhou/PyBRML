@@ -1,12 +1,5 @@
 #!/usr/bin/env python
 
-"""
-%SETPOT sets array Potential variables to specified states
-% newpot = setpot(pot,variables,evidstates)
-%
-% set variables in Potential to evidential states in evidstates
-% Note that the new Potential does not contain the evidential variables
-"""
 import numpy as np
 import copy as copy
 from .Potential import Potential
@@ -17,6 +10,28 @@ from ..utils.index_to_assignment import index_to_assignment
 
 
 def setpot(pot, evvariables, evidstates):
+    """Set Potential variables to specified states.
+
+    Parameters :
+        pot : Potential :
+            The target potential to be set.
+
+        evvariables : sequence[n_variables, ] or np.ndarray[n_variables, ] :
+            Several variales to be set.
+
+        evidstates : sequence[n_variables,] or np.ndarray[n_variables, ] :
+            The states that each variable in evvariables are set to.
+
+    Returns :
+        newpot : Potential :
+            The new pot with the variables set.
+
+    Raises :
+        None
+
+    Notes :
+        The new Potential does not contain the evidential variables
+    """
     #FIXME: data format needed to be unified
     vars = pot.variables
     #vars = np.array(pot.variables) # convert to ndarray format
@@ -24,7 +39,7 @@ def setpot(pot, evvariables, evidstates):
     # convert to ndarray format
     #evidstates = np.array(evidstates) # convert to ndarray format
     #print "variables:", vars
-    table = pot.table
+    #table = pot.table
     nstates = pot.card
     #print "number of states:", nstates
     #print "vars:", vars
