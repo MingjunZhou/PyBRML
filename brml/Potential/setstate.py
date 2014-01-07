@@ -7,42 +7,37 @@ from ..utils.subv2ind import subv2ind
 
 
 def setstate(pot, variables, state, val):
-"""
-%SETSTATE set a Potential's specified joint state to a specified value
-"""
     """Set a Potential's specified joint state to a specified value.
 
     Parameters :
         pots : sequence of Potential :
             The target potentials to be set.
 
-        varargin : sequence[n_variables, ] or np.ndarray[n_variables, ] :
-            Several variales to maximise the potential over.
+        variables : int :
+            One variable to set.
 
-        maxover : int, optional, default: 1 :
-            If maxover == 1 the potential is maxed over variables, otherwise
-            potential is maxed over everything except variables.
+        state : int :
+            The state of the variable to be set.
+
+        value : float :
+            Variable in that state is set with the value.
 
     Returns :
         newpot : Potential :
-            A new pot that maximised the origin potential.
-
-        maxstate : nd.array[n_variables, ] :
-            When the variables in varargin equal to the states in maxstate,
-            we get the maximised potential.
+            The result Potential.
 
     Raises :
         None
 
     Notes :
-        p = setstate(pot,variables,states,val)
- 
+        p = setstate(pot, variables, states, val)
+
         All states of the Potential that match the given (sub)state are set to
         val.
         eg: pot=array([1 2],rand(2,2);
-        newpot=setstate(pot,1,2,0.5)
-        then for newpot.table all table entries matching variable 1 in state 2 will be set to value 0.5
-
+            newpot = setstate(pot,1,2,0.5)
+        then for newpot.table all table entries matching variable 1 in state 2
+        will be set to value 0.5
     """
     variables = np.array([variables])
     state = np.array([state])

@@ -17,7 +17,7 @@ def setpot(pot, evvariables, evidstates):
             The target potential to be set.
 
         evvariables : sequence[n_variables, ] or np.ndarray[n_variables, ] :
-            Several variales to be set.
+            Several variables to be set.
 
         evidstates : sequence[n_variables,] or np.ndarray[n_variables, ] :
             The states that each variable in evvariables are set to.

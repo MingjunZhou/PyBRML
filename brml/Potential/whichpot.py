@@ -10,6 +10,31 @@ import numpy as np
 
 
 def whichpot(pots, variables, most_n=None):
+    """Returns potential that contain a set of variables.
+
+    Parameters :
+        pots : list of Potential :
+            The target potentials.
+
+        variables : sequence[n_variables, ] or np.ndarray[n_variables, ] :
+            Several variables to look up.
+
+        most_n : int, optional, default: None :
+            If optional most_n is used, returns at most n potential numbers.
+
+    Returns :
+        pot_num : np.ndarray[most_n] :
+            The numbers of the Potentials been found.
+
+    Raises :
+        None
+
+    Notes :
+        potnum = whichpot(pot,variables,<n>)
+        Return potential numbers that contain all the specified variables.
+        The cliques are returned with those containing the smallest number of
+        variables first.
+    """
     pot_num = []
     nvars = []
     for i, pot in enumerate(pots):

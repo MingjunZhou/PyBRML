@@ -8,22 +8,26 @@
 
 def sumpots(pots):
     """Sum Potentials into a single Potential.
-        pot = sumpots(pots)
 
-    Args:
-        pots: A list of Potentials.
+    Parameters :
+        pots : list of Potentials :
+            The target Potentials.
 
-    Returns:
-        pot: Return the sum of all the Potentials.
+    Returns :
+        pot : Potential :
+            The sum Potential.
 
-    Raises:
+    Raises :
         None
+
+    Notes :
+        pot = sumpots(pots)
     """
     newpot = pots[0]
-    for j in range(len(pots)-1):
-        if newpot.variables.size != 0 and pots[j+1].table.size != 0:
-            newpot = newpot + pots[j+1]
+    for j in range(len(pots) - 1):
+        if newpot.variables.size != 0 and pots[j + 1].table.size != 0:
+            newpot = newpot + pots[j + 1]
         else:
-            newpot = pots[j+1]
+            newpot = pots[j + 1]
 
     return newpot
