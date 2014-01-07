@@ -10,7 +10,25 @@ import numpy as np
 
 
 def ancestral_order(adj):
-    """Return the ancestral order of the DAG adj (oldest first)"""
+    """Return the ancestral order of the DAG adj (oldest first)
+
+    Parameters :
+        adj : np.ndarray[n_vertexes, n_vertexs] :
+            The adjacency matrix. 
+
+    Returns :
+        order : np.ndarray[n_vertexes_in_the_tree, ] :
+            The ordered vertexes of the vertexes in the tree.
+
+        noparents_vars : nd.ndarray[n_vertexes_not_in_the_tree, ] :
+            The vertexes out of the tree.
+
+    Raises :
+        None
+
+    Notes :
+        order, noparents_vars = ancestral_order(adj) 
+    """
     n_node = adj.shape[0]
     newadj = np.array(adj)
     done = np.zeros(n_node, dtype=int)

@@ -14,23 +14,22 @@ import collections
 def ancestors(x, adj):
     """Find the ancestors of a node x in a DAG adj.
 
-    Usage :
-        a = maxpot(pot, invariables)
-
     Parameters :
         x : int :
             The node.
 
-        adj : int np.ndarray [n_node, n_node] :
+        adj : np.ndarray[n_node, n_node] :
             Adjacency matrix.
 
     Returns :
-        a : int 1-d np.ndarray :
+        a : np.ndarray[n_a, ] :
             Ancestors of x.
 
     Raises :
         None
 
+    Notes :
+        a = maxpot(pot, invariables)
     """
     if not isinstance(adj, np.ndarray):
         adj = np.array(adj)

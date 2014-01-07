@@ -4,12 +4,19 @@ from make_layout import make_layout
 from poset import poset
 from parents import parents
 from ancestors import ancestors
+from ancestors_order import ancestors_order
 from children import children
 from connected_components import connected_components
 from edges import edges
 from neigh import neigh
 from dag import dag
 from istree import istree
+from cond_indep import cond_indep
+from neighbour_size import neighbour_size
+from single_parent_tree import single_parent_tree
+from spantree import spantree
+from toposort import toposort
+
 
 __all__ = ['draw_layout',
            'draw_net',
@@ -17,9 +24,15 @@ __all__ = ['draw_layout',
            'poset',
            'parents',
            'ancestors',
+           'ancestors_order',
            'children',
            'connected_components',
            'edges',
            'neigh',
            'dag',
-           'istree']
+           'istree',
+           'cond_indep',
+           'neighbour_size',
+           'single_parent_tree',
+           'spantree',
+           'toposort']
