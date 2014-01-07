@@ -8,7 +8,28 @@
 import numpy as np
 import collections
 
+
 def isscalar(a):
+    """Check whether the input set is scalar.
+
+    Parameters :
+        a : scalar or vector :
+            Input to be check.
+
+    Returns :
+        isscalar : boolean :
+            True for a is scalar, false for a is not scalar.
+
+    Raises :
+        None
+
+    Notes :
+        isscalar(1) == True
+        isscalar([1]) == True
+        isscalar([1, 2]) == False
+        isscalar(np.ndarray([1])) == True
+        isscalar(np.ndarray([1, 2])) == False
+    """
     if isinstance(a, collections.Sequence):
         if len(a) == 1:
             return True

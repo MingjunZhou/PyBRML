@@ -13,10 +13,6 @@ from .assignment_to_index import assignment_to_index
 def max_array(x, max_over, return_states=False):
     """Maximise a multi-dimensional array over a set of dimensions.
 
-    Usage :
-        max_val = max_array(x, max_over)
-        max_val, max_state = max_array(x, max_over, return_states=True)
-
     Parameters :
         x : nd.array[n_dim1, n_dim2, ...] :
             The multi-dimensional array to be maximised. After the
@@ -38,16 +34,19 @@ def max_array(x, max_over, return_states=False):
             The row vetcor in max_state[i, :] is the assignments in x. That
             is, x[max_state[i, :]] == max_val[i].
 
+    Raises :
+        None
+
+    Notes :
+        max_val = max_array(x, max_over)
+        max_val, max_state = max_array(x, max_over, return_states=True)
+
     Examples :
         max_val, max_state = max_array(np.rand(3,4,2), [3, 1])
 
         We maximise over the 3rd and 1st dimensions, of the 3x4x2 table. This
         means that after maximising, the remaining array is a 4x1 array.
         x[max_state[i, :]] == max_val[i]
-
-    Raises :
-        None
-
     """
     if not isinstance(max_over, np.ndarray):
         max_over = np.array(max_over)

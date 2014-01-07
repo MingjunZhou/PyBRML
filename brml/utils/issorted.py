@@ -9,7 +9,30 @@ import numpy as np
 
 
 def issorted(pot, variables=[]):
-    variables = np.array(variables)
+    """Check whether the variables in the Potential is sorted.
+
+    Parameters :
+        pot : Potential :
+            The target potential.
+
+        variables : sequence[n_variables, ] or np.ndarray[n_variables, ], optional, default : None :
+            The sorted sequence of variables to be compared with.
+
+    Returns :
+        issorted : boolean :
+            True for pot is sorted, False otherwise.
+
+    Raises :
+        None
+
+    Notes :
+        If variables is not None, compare the variables of the pot with the
+        given variables.
+    """
+    if variables is None:
+        variables = np.array([])
+    else:
+        variables = np.array(variables)
     originVar = pot.variables
     if np.size(variables) == 0:
         return np.equal(np.sort(originVar), originVar)

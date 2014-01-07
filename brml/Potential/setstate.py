@@ -34,10 +34,13 @@ def setstate(pot, variables, state, val):
 
         All states of the Potential that match the given (sub)state are set to
         val.
-        eg: pot=array([1 2],rand(2,2);
-            newpot = setstate(pot,1,2,0.5)
+
+        eg: pot=array([1 2], rand(2, 2)
+
+            newpot = setstate(pot, 1, 2, 0.5)
+ 
         then for newpot.table all table entries matching variable 1 in state 2
-        will be set to value 0.5
+        will be set to value 0.5.
     """
     variables = np.array([variables])
     state = np.array([state])

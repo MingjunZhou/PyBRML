@@ -19,7 +19,7 @@ from norm_table import norm_table
 from condp import condp
 from condexp import condexp
 from isscalar import isscalar
-
+from logsumexp import logsumexp
 # Legacy
 from subv2ind import subv2ind
 
@@ -36,4 +36,5 @@ __all__ = ['assignment_to_index',
            'norm_table',
            'condp',
            'condexp',
-           'isscalar']
+           'isscalar',
+           'logsumexp']

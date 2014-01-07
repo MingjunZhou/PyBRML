@@ -10,11 +10,11 @@ from .isscalar import isscalar
 
 
 def logsumexp(a, b=1):
-    """Compute log(sum(exp(a).*b)) valid for large a.
+    """Compute log(sum(exp(a).*b)) for large a.
 
-    Usage:
+    Notes :
         logsumexp(a<, b>)
-        if b is missing it is assumed to be 1
+        If b is missing it is assumed to be 1.
 
         example:
             logsumexp([-1000, 1000, -998], [1,2,0.5])

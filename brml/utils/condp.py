@@ -27,11 +27,10 @@ def condp(pin, dist_vars=None):
     Returns :
         pnew : nd.ndarray[new_n_dim1, new_n_dim2, ...] :
             A conditional distribution equal to
-            pin(dist_evidences | evidences). 
+            pin(dist_evidences | evidences).
 
     Raises :
         None
-
     """
     pin = pin.astype(float)
     m = pin.flatten(1).max()

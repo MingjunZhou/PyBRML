@@ -10,10 +10,10 @@ from .condp import condp
 
 
 def condexp(logp):
-    """Compute the conditional distribution of a log-form probability table."""
+    """Compute the conditional distribution of a log-form probability table.
+    """
     logp = logp.astype(float)
     pmax = logp.flatten(1).max()
     logp = logp - pmax
     pnew = condp(np.exp(logp))
     return pnew
-

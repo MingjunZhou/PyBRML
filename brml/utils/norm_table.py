@@ -9,7 +9,9 @@ import numpy as np
 
 
 def norm_table(m):
-    """Return a normalised table from an unnormalised table."""
+    """Return a normalised table from an unnormalised table.
+    mnew = norm_table(m)
+    """
     eps = np.finfo(float).eps
     m = m + eps
     mnew = m / np.sum(m)

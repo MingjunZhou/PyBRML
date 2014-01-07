@@ -14,7 +14,8 @@ Contents:
    Basic Graph Concepts <potential>
    Graphical Models <graph>
    Inference <inference>
-
+   
+   Utilities <utils>
 Indices and tables
 ==================
 

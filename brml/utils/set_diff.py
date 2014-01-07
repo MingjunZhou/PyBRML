@@ -11,29 +11,28 @@ from ismember import ismember
 
 def set_diff(a, b):
     """Get the difference between SET a and SET b.
-    
-    Usage :
-        diff, diff_index_in_a = set_diff(a, b)
 
     Parameters :
-        a : A 1-d sequence or a 1-d nd.array. 
-            SET a.
+        a : sequence[n_a, ] or nd.ndarray[n_a, ].
+            The first set.
 
-        a : A 1-d sequence or a 1-d nd.array. 
-            SET b.
+        b : sequence[n_b, ] or nd.ndarray[n_b, ].
+            The second set.
 
     Returns :
-        diff : A 1-d nd.array.
-            All the elements in SET a but not in SET b.
+        diff : nd.ndarray[n_diff, ] :
+            All the elements in set a but not in set b.
 
-        diff_index_in_a : A 1-d nd.array with the same size of SET a.
-            a(diff_index_in_a) == diff.
+        diff_index_in_a : nd.ndarray[n_a, ] of boolean :
+            a[diff_index_in_a] == diff.
 
     Raises :
         None
-    
-    """
 
+    Notes :
+        diff, diff_index_in_a = set_diff(a, b)
+
+    """
     a = np.array(a)
     b = np.array(b)
     diff = np.setdiff1d(a, b)

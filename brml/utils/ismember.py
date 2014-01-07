@@ -19,29 +19,30 @@ def ismember(a, b):
     a[idx_in_a_bool] == b[idx_in_b_bool].
     idx_in_b == idx_redundant[idx_redundant >= 0]
 
-    Args:
-        a: An 1-d nd.array.
-        b: An 1-d nd.array.
+    Parameters :
+        a : sequence[n_a, ] or np.ndarray[n_a, ] :
+            The first set.
 
-    Returns:
-        idx_in_a_bool : 1-d nd.array, boolean
+        b : sequence[n_b, ] or np.ndarray[n_b, ] :
+            The second set.
+
+    Returns :
+        idx_in_a_bool : np.ndarray[n_idx_in_a, ] of boolean
             For arrays A and B returns an array of the same size as A
             containing true where the elements of A are in B and false
             otherwise.
 
-        idx_in_b : 1-d nd.array, int
+        idx_in_b : np.ndarray[n_idx_in_b, ]
             idx_in_b == idx_redundant[idx_redundant >= 0]
 
-        idx_redundant : 1-d nd,array, int
-                returns an array containing the highest absolute index in
-                B for each element in A which is a member of B and -1 if there
-                is no such index
+        idx_redundant : np.ndarray[n_idx_redundant, ]
+            Returns an array containing the highest absolute index in B for
+            each element in A which is a member of B and -1 if there is no
+            such index.
 
-    Raises:
+    Raises :
         None
-
     """
-
     aa = a
     a = np.array(a)
     b = np.array(b)
