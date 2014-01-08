@@ -9,8 +9,29 @@
 import numpy as np
 import collections
 
+
 def parents(x, adj):
-    """Parents of a node given an adjacency matrix."""
+    """Parents of a node given an adjacency matrix.
+
+    Parameters :
+        x : scalar or sequence :
+            The child node(s).
+
+        adj : np.ndarray, shape = [n_nodes, n_nodes] :
+            The adjacency matrix.
+
+    Returns :
+        p : np.ndarray, shape = [n_parents, ] :
+            The parents of the node(s).
+
+    Raises :
+        None
+
+    Notes :
+        p = parents(x, adj)
+
+        The result p doesn't contain the parents of parents of x.
+    """
     if not isinstance(adj, np.ndarray):
         adj = np.array(adj)
     if isinstance(x, (collections.Sequence, np.ndarray)):

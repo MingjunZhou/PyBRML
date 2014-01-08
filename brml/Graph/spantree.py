@@ -7,17 +7,11 @@
 
 
 import networkx as nx
-import numpy as np
 
 
 def spantree(adjacency):
     """Return a spanning tree from an undirected graph represented by an
     adjacency list or matrix.
-
-    Usage :
-        mst = spantree([[0, 1, 1, 0], [1, 0, 1, 1],
-                        [1, 1, 0, 1], [0, 1, 1, 0]])
-        mst = spantree({0 : [1, 2], 1 : [3, 4], 2 : [4,5]})
 
     Parameters :
         adjacency : array-like or dict :
@@ -31,6 +25,10 @@ def spantree(adjacency):
     Raises :
         None
 
+    Notes :
+        mst = spantree([[0, 1, 1, 0], [1, 0, 1, 1],
+                        [1, 1, 0, 1], [0, 1, 1, 0]])
+        mst = spantree({0 : [1, 2], 1 : [3, 4], 2 : [4,5]})
     """
     g = nx.Graph(adjacency)
     return nx.algorithms.mst.minimum_spanning_tree(g)

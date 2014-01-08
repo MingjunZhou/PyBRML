@@ -27,9 +27,6 @@ def draw_layout(adj, gtype='directed', layout='topological',
                 labels=None, node_type=None, coord=None):
     """Draw a layout for the graph represented by the adjacency matrix.
 
-    Usage :
-        g, coord = draw_layout(adj<, labels, node_t, coord>)
-
     Parameters :
         adj : 2-d nd.ndarray[n_node, n_node]
             Adjacency matrix, the row is source, and the coloumn is sink.
@@ -40,16 +37,29 @@ def draw_layout(adj, gtype='directed', layout='topological',
 
         layout : string, optional, default : 'topological' :
             Graph layout which gives the nodes' positions.
-            'circular': Position nodes on a circle.
-            'random': Position nodes uniformly at random in the unit square.
-            'shell': Position nodes in concentric circles.
-            'spring': Position nodes using Fruchterman-Reingold force-dircted
-                      algorithm.
-            'spectral': Position nodes using the eigenvectors of the graph
-                        Laplacian.
-            'topological': Position nodes in the levels given by
-                           topological_sort algorithm.
-            'custom': Position nodes given by the 'coord' parameter.
+
+            'circular' :
+                Position nodes on a circle.
+
+            'random' :
+                Position nodes uniformly at random in the unit square.
+
+            'shell' :
+                Position nodes in concentric circles.
+
+            'spring' :
+                Position nodes using Fruchterman-Reingold force-dircted
+                algorithm.
+
+            'spectral' :
+                Position nodes using the eigenvectors of the graph Laplacian.
+
+            'topological' :
+                Position nodes in the levels given by topological_sort
+                algorithm.
+
+            'custom' :
+                Position nodes given by the 'coord' parameter.
 
         labels : string sequence[n_node], optional, default : None :
             Labels for the nodes. Default is a integer list
@@ -73,6 +83,8 @@ def draw_layout(adj, gtype='directed', layout='topological',
     Raises :
         None
 
+    Notes :
+        g, coord = draw_layout(adj<, labels, node_t, coord>)
     """
     n_node = adj.shape[0]
 

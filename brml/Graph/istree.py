@@ -13,9 +13,6 @@ from .neighbour_size import neighbour_size
 def istree(adj, root=-1):
     """Check if graph is singly-connected (a polytree).
 
-    Usage :
-        tree, elimseq, schedule = istree(adj, root=0)
-
     Parameters :
         adj : array-like :
             Adjacency matrix(directed or undirected).
@@ -39,6 +36,8 @@ def istree(adj, root=-1):
         None
 
     Notes :
+        tree, elimseq, schedule = istree(adj, root=0)
+
         If adj is directed, the elimination schedule begins with the nodes
         with no children.
         If root is specified, the last node eliminated is root.
@@ -49,7 +48,6 @@ def istree(adj, root=-1):
         A tree/singly-connected graph must admit a recursive simplical node
         elimination. That is at any stage in the elimination there must be a
         node with either zero or 1 neighbour in the remaining graph.
-
     """
     n_node = adj.shape[0]
     schedule = np.zeros([n_node, 2], dtype=int)

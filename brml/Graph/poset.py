@@ -12,23 +12,22 @@ import numpy as np
 def poset(adj, root):
     """Identify a partial ordering among the nodes of a graph.
 
-    Usage :
-        depth = poset(adj, root)
-
     Parameters :
-        adj : integer np.ndarray[n_node, n_node] :
+        adj : np.ndarray, shape = [n_nodes, n_nodes] :
             Adjacency matrix.
 
-        root : integer :
+        root : int :
             Node to start with.
 
     Returns :
-        depth : integer np.ndarray[n_node] :
+        depth : np.ndarray[n_nodes, ] :
             Depth of the nodes.
 
     Raises :
         None
 
+    Notes :
+        depth = poset(adj, root)
     """
     if not isinstance(adj, np.ndarray):
         adj = np.array(adj)
@@ -49,6 +48,3 @@ def poset(adj, root):
         depth[next_level] = depth[node] + 1
 
     return depth
-
-    
-

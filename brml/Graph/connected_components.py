@@ -11,7 +11,22 @@ from scipy import sparse
 
 
 def connected_components(adj):
-    """Find the connected components in an undirected graph"""
+    """Find the connected components in an undirected graph
+
+    Parameters :
+        adj : array-like, shape = [n_nodes, n_nodes] :
+            A dense matrix or rank-2 ndarray.
+
+    Returns :
+        cluster : np.ndarray, shape = [n_cc, ] :
+            The connected components in the graph.
+
+    Raises :
+        None
+
+    Notes :
+        cluster = connected_components(adj)
+    """
     A = sparse.csr_matrix(adj)
     n_node = A.shape[0]
     A = A + A.transpose()
@@ -22,7 +37,7 @@ def connected_components(adj):
     for i in range(n_node - 1):
         connected = np.dot(connected, newA)
     for i in range(n_node):
-        vars, redun  = connected[:, i].nonzero()
+        vars, redun = connected[:, i].nonzero()
         if vars.size != 0:
             cl += 1
             cluster[vars] = cl
@@ -30,4 +45,3 @@ def connected_components(adj):
                 for var2 in vars:
                     connected[var1, var2] = 0
     return cluster
-

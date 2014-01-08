@@ -13,21 +13,17 @@ from .ancestors import ancestors
 def cond_indep(A, X, Y, Z):
     """Conditional Independence test p(X,Y|Z)=p(X|Z)p(Y|Z)?
 
-    Usage :
-        cindep = cond_indep(A, X, Y, Z=None)
-
     Parameters :
-        A : array-like, shape: (n_nodes, n_nodes) :
+        A : sequence[n_nodes, n_nodes) :
             The adjacency matrix(directed or undirected).
 
-        X : integer :
+        X : int :
             The first variable.
 
-        Y : integer :
+        Y : int :
             The second variable.
 
-        Z : integer; or integer collections; or array-like,
-            shape : n_evidences; or empty; optional, default : None :
+        Z : scalar or array-like, shape = [n_evidences, ], optional, default : None :
             The given knowledge(s). Z may be empty.
 
     Returns :
@@ -37,6 +33,8 @@ def cond_indep(A, X, Y, Z):
     Raises :
         None
 
+    Notes :
+        cindep = cond_indep(A, X, Y, Z=None)
     """
     if not isinstance(A, np.ndarray):
         A = np.array(A)

@@ -15,9 +15,6 @@ from .poset import poset
 def make_layout(adj, g=None, gtype='directed'):
     """Creates a layout from an adjacency matrix.
 
-    Usage :
-        x, y = make_layout(adj<, g, gtype='directed'>)
-
     Parameters :
         adj : integer nd.ndarray[n_node, n_node] :
             Adjacency matrix.
@@ -31,13 +28,15 @@ def make_layout(adj, g=None, gtype='directed'):
     Returns :
         x : 1-d nd.ndarray[n_node] :
             X Positions of nodes.
-        
+
         y : 1-d nd.ndarray[n_node] :
             Y Positions of nodes.
 
     Raises :
         None
 
+    Notes :
+        x, y = make_layout(adj<, g, gtype='directed'>)
     """
     n_node = adj.shape[0]
     if g is None:
@@ -67,8 +66,8 @@ def make_layout(adj, g=None, gtype='directed'):
         offset = (i % 2 - 0.5) / 10.0
         x[idx] = 1.0 * np.arange(idx.size) / (idx.size + 1) + offset
         #offset = 0.1
-        #n_idx = idx.size 
+        #n_idx = idx.size
         #for j, index in enumerate(idx):
-        #    x[index] = offset * ( j - (n_idx - 1.0) / 2.0) 
-    
+        #    x[index] = offset * ( j - (n_idx - 1.0) / 2.0)
+
     return x, y

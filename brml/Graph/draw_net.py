@@ -11,9 +11,6 @@ from .draw_layout import draw_layout
 def draw_net(adj, layout='topological'):
     """Draw net for the adjacency matrix.
 
-    Usage :
-        draw_layout(adj, layout='topological')
-
     Parameters :
         adj : np.ndarray[n_node, n_node] :
             Adjacency matrix.
@@ -24,5 +21,7 @@ def draw_net(adj, layout='topological'):
     Raises :
         None
 
+    Notes :
+        draw_layout(adj, layout='topological')
     """
     draw_layout(adj, layout)

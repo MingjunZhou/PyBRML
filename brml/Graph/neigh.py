@@ -14,9 +14,6 @@ def neigh(v, adj, rtype='union'):
     """Find the neighbours of a vertex v on an undirected graph with
      adjacency matrix adj.
 
-    Usage :
-        n = neigh(adj, v, rtype='set')
-
     Parameters :
         adj : array-like :
             Undirected adjacency matrix.
@@ -35,6 +32,8 @@ def neigh(v, adj, rtype='union'):
     Raises :
         None
 
+    Notes :
+        n = neigh(adj, v, rtype='set')
     """
     if not isinstance(v, collections.Sequence):
         v = [v]

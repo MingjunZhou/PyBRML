@@ -34,9 +34,6 @@ def single_parent_connected_tree(Atree, start):
 def single_parent_tree(Atree, start=0):
     """From an undirected tree, form a directed tree with at most one parent.
 
-    Usage :
-        spTree, elimseq = single_parent_tree(Atree, orient=0)
-
     Parameters :
         Atree : array-like :
             Adjacency matrix for the tree.
@@ -55,6 +52,8 @@ def single_parent_tree(Atree, start=0):
     Raises :
         None
 
+    Notes :
+        spTree, elimseq = single_parent_tree(Atree, orient=0)
     """
     newAtree = (Atree + Atree.transpose()) > 0
     cc = connected_components(newAtree)
